@@ -1,4 +1,6 @@
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 import Head from 'next/head'
+import { useAccount } from 'wagmi'
 
 const fetchShop = async (accessToken: string) => {
   try {
@@ -18,6 +20,7 @@ const fetchShop = async (accessToken: string) => {
 }
 
 export default function Home() {
+  const { address } = useAccount()
   return (
     <>
       <Head>
@@ -27,6 +30,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
+        <ConnectButton />
+        <p>Wallet address: {address}</p>
         <form onSubmit={(event) => {
           event.preventDefault();
           const accessToken = (event.target as HTMLFormElement).accessToken.value;
