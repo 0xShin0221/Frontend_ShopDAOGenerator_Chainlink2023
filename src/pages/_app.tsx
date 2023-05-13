@@ -1,3 +1,4 @@
+import { ChakraProvider } from '@chakra-ui/react'
 import type { AppProps } from 'next/app'
 
 import '@rainbow-me/rainbowkit/styles.css';
@@ -9,6 +10,7 @@ import {
 import { configureChains, createConfig, WagmiConfig } from 'wagmi';
 import { polygonMumbai, goerli, mainnet, polygon, optimism, arbitrum } from 'wagmi/chains';
 import { publicProvider } from 'wagmi/providers/public';
+import { useEffect } from 'react';
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [
@@ -28,17 +30,24 @@ const { connectors } = getDefaultWallets({
 });
 
 const wagmiConfig = createConfig({
-  autoConnect: true,
+  autoConnect: false,
   connectors,
   publicClient,
   webSocketPublicClient,
 })
 
 export default function App({ Component, pageProps }: AppProps) {
+  // https://github.com/wagmi-dev/wagmi/issues/542#issuecomment-1479062192
+  useEffect(() => {
+    wagmiConfig.autoConnect()
+  }, [])
+
   return (
     <WagmiConfig config={wagmiConfig}>
       <RainbowKitProvider chains={chains}>
-        <Component {...pageProps} />
+        <ChakraProvider>
+          <Component {...pageProps} />
+        </ChakraProvider>
       </RainbowKitProvider>
     </WagmiConfig>
   )
