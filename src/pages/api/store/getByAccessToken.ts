@@ -11,17 +11,24 @@ export default async function handler(
   }
   try {
     console.log(`method: ${req.method}`)
+    console.log(`accessToken: ${req.body.accessToken}`)
+    console.log(`storeUrl: ${req.body.storeUrl}`)
     // Ex https://your-development-store.myshopify.com/admin/api/2023-04/shop.json
-    console.log(`Shop fetch url: ${process.env['NEXT_PUBLIC_SHOP_FETCH_URL']}`)
-    const response = await fetch(process.env['NEXT_PUBLIC_SHOP_FETCH_URL'] ?? '', { method: 'GET', headers });
+    const shopFetchUrl = `https://${req.body.storeUrl}.myshopify.com/admin/api/2023-04/shop.json`
+    console.log(`Shop fetch url: ${shopFetchUrl}`)
+    const response = await fetch(shopFetchUrl, { method: 'GET', headers });
     if (response.ok) {
       const shopData = await response.json();
       res.status(200).json(shopData)
     } else {
+      console.log('---------- else ---------')
       console.log(`Error fetching store data: ${response.status}`);
-      res.status(500)
+      console.log(`Error text: ${response.statusText}`);
+      res.status(response.status)
+      res.end(`Shopify Store: ${response.statusText}`)
     }
   } catch (error) {
+    console.log('---------- catch ---------')
     console.error(`Error fetching store data: ${error}`);
     res.status(500)
   }
