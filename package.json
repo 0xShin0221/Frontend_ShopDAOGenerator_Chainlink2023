@@ -4,20 +4,31 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.6.1",
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@prisma/client": "^4.14.0",
+    "@rainbow-me/rainbowkit": "^1.0.0",
     "@types/node": "18.16.3",
     "@types/react": "18.2.0",
     "@types/react-dom": "18.2.1",
+    "@vercel/postgres": "^0.3.0",
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.2",
+    "ethers": "^5",
+    "framer-motion": "^10.12.10",
     "next": "13.3.2",
     "node-fetch": "^3.3.1",
+    "prisma": "^4.14.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "typescript": "5.0.4"
+    "typescript": "5.0.4",
+    "viem": "^0.3.19",
+    "wagmi": "^1.0.1"
   }
 }

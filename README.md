@@ -1,5 +1,10 @@
+# Frontend_ShopDAOGenerator_Chainlink2023
 
-## Frontend_ShopDAOGenerator_Chainlink2023
+## Vercel Postgres setup
+
+1. Create a database by following [1. Create a Postgres database](https://vercel.com/docs/storage/vercel-postgres/quickstart#quickstart)
+2. Pull .env by `vercel env pull .env.local`
+3. Create the tables by `npx prisma db push`
 
 # The following is the output produced by Next.js
 
