@@ -19,8 +19,7 @@ export default async function handler(
   const sampleResponse = {
     data: {
       nftAddress: "0x",
-      hyphenatedOrderId:
-        "820982911946154500-820982911946154501-820982911946154502",
+      orderId: "820982911946154500",
       totalSale: "22",
       totalProfit: "11",
     },
