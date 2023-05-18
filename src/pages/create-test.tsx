@@ -9,9 +9,6 @@ import {
 
 import contractAbi from "../../types/dao/DaoFactory.json";
 
-// @ts-expect-error
-const web3 = new Web3(window.ethereum);
-
 async function requestAccount() {
   // @ts-expect-error
   if (window.ethereum) {
@@ -21,27 +18,29 @@ async function requestAccount() {
 }
 
 async function getAccount() {
+  // @ts-expect-error
+  const web3 = new Web3(window.ethereum);
   const accounts = await web3.eth.getAccounts();
   return accounts[0];
 }
 
 async function callCreateFunction() {
   const ownerAddress = await getAccount();
-  const contractAddress = "0xYourContractAddress"; 
-  const contract = new web3.eth.Contract(contractAbi, contractAddress);
+  const contractAddress = '0xOwnerAddress'
+  // @ts-expect-error
+  const web3 = new Web3(window.ethereum);
+  const contract = new web3.eth.Contract(contractAbi['abi'], contractAddress);
   const createParams = {
     owner: ownerAddress,
-    vote_maximumSupply: /* value */ 1,
-    vote_name: /* value */ 'test',
-    vote_symbol: /* value */ 'SYMBOL',
-    vote_URI: /* value */ 'url',
-    timelock_minDelay: /* value */ 100,
-    proposerList: /* array of addresses */ [],
-    executorList: /* array of addresses */ [],
-    daoName: /* value */ 'test',
-    governance_votingDelay: /* value */ 100,
-    governance_votingPeriod: /* value */ 100,
-    governance_quorumPercentage: /* value */ 50,
+    vote_maximumSupply: 10000,
+    vote_name: 'GRAND OPENING VOTES',
+    vote_symbol: 'GOV',
+    vote_URI: 'ipfs://metadata.json',
+    timelock_minDelay: 10,
+    daoName: 'GOV DAO',
+    governance_votingDelay: 1,
+    governance_votingPeriod: 10,
+    governance_quorumPercentage: 10,
   };
   await contract.methods
     .create(createParams)
