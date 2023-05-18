@@ -17,12 +17,10 @@ export default async function handler(
   console.log("Chainlink req:", req.body);
 
   const sampleResponse = {
-    data: {
-      nftAddress: "0x",
-      orderId: "820982911946154500",
-      totalSale: "22",
-      totalProfit: "11",
-    },
+    nftAddress: "0x",
+    orderId: "820982911946154500",
+    totalSale: "22",
+    totalProfit: "11",
   };
 
   res.status(200).json(sampleResponse);
