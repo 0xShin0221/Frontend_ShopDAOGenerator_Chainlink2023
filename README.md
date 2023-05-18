@@ -1,5 +1,7 @@
 # Frontend_ShopDAOGenerator_Chainlink2023
 
+wip
+
 ## Vercel Postgres setup
 
 1. Create a database by following [1. Create a Postgres database](https://vercel.com/docs/storage/vercel-postgres/quickstart#quickstart)
