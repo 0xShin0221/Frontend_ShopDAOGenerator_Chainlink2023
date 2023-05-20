@@ -24,14 +24,14 @@ async function getAccount() {
   return accounts[0];
 }
 
+const ownerAddress = '0x8d920B053f61c343CC716AA35eb32F0a05C9FFb3'
 async function callCreateFunction() {
-  const ownerAddress = await getAccount();
-  const contractAddress = '0xOwnerAddress'
+  const yourAddress = await getAccount();
   // @ts-expect-error
   const web3 = new Web3(window.ethereum);
-  const contract = new web3.eth.Contract(contractAbi['abi'], contractAddress);
+  const contract = new web3.eth.Contract(contractAbi['abi'], ownerAddress);
   const createParams = {
-    owner: ownerAddress,
+    owner: yourAddress,
     vote_maximumSupply: 10000,
     vote_name: 'GRAND OPENING VOTES',
     vote_symbol: 'GOV',
@@ -44,7 +44,7 @@ async function callCreateFunction() {
   };
   await contract.methods
     .create(createParams)
-    .send({ from: ownerAddress })
+    .send({ from: yourAddress })
     .on("transactionHash", (hash) => {
       console.log("Transaction hash:", hash);
     })
