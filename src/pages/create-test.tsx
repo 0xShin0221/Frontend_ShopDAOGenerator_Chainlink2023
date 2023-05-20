@@ -7,18 +7,15 @@ import {
   Box,
 } from "@chakra-ui/react";
 
-import contractAbi from "../../types/dao/DaoFactory.json";
+import contractAbi from "../../abi/DaoFactory.json";
 
 async function requestAccount() {
-  // @ts-expect-error
   if (window.ethereum) {
-    // @ts-expect-error
     await window.ethereum.request({ method: "eth_requestAccounts" });
   }
 }
 
 async function getAccount() {
-  // @ts-expect-error
   const web3 = new Web3(window.ethereum);
   const accounts = await web3.eth.getAccounts();
   return accounts[0];
