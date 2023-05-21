@@ -32,7 +32,7 @@ export const DaoCreateStepper = memo(() => {
       children: <DaoCreater goToNext={goToNext} />,
     },
     { title: "NFT", description: "Define membership NFT", children: <Heading>Step: define membership NFT</Heading> },
-  ], []);
+  ], [goToNext]);
 
   return (
     <>
