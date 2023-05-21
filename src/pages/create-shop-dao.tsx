@@ -8,7 +8,7 @@ import { DaoCreateStepper } from "../components";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount } from "wagmi";
 
-export default function Home() {
+export default function CreateShopDao() {
   const { isConnected, isDisconnected } = useAccount()
 
   return (
