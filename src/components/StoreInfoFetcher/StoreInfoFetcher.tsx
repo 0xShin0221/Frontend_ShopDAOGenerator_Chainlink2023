@@ -189,7 +189,7 @@ export const StoreInfoFetcher = memo(({
                 and obtain an access token.
               </Text>
               <Input
-                placeContent="Shopify Access token"
+                placeholder="Shopify Access token"
                 type="password"
                 name="accessToken"
               />
