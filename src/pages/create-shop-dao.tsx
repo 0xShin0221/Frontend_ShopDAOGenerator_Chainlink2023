@@ -4,7 +4,7 @@ import {
   Container, Text, VStack,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
-import { DaoCreateStepper } from "./components";
+import { DaoCreateStepper } from "../components";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount } from "wagmi";
 

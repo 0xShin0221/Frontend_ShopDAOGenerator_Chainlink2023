@@ -34,9 +34,9 @@ import {
   NumberInputStepper,
 } from "@chakra-ui/react";
 import Web3 from "web3";
-import { _abiDaoFactory } from "../../../../abi";
-import { DaoFactory } from "../../../../typechain-types";
-import { IDaoFactory } from "../../../../typechain-types/src/DAOFactory/DaoFactory";
+import { _abiDaoFactory } from "../../../abi";
+import { DaoFactory } from "../../../typechain-types";
+import { IDaoFactory } from "../../../typechain-types/src/DAOFactory/DaoFactory";
 
 type ConfirmationNumberTransactionResponse = {
   confirmationNumber: number;
