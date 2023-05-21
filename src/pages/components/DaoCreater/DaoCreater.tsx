@@ -55,7 +55,7 @@ async function callCreateFunction(
   setErrorMessage(undefined);
   setTransactionHash(undefined);
   setConfirmationNumberTransactionResponseList([]);
-  const web3 = new Web3(window.ethereum);
+  const web3 = new Web3((window as any).ethereum);
   const contract = new web3.eth.Contract(_abiDaoFactory, ownerAddress);
   await (contract.methods as DaoFactory)
     .create(params)
