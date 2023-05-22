@@ -1,0 +1,1 @@
+Copied this directory from https://github.com/0xShin0221/Protocol_ShopDAOGenerator_Chainlink2023/tree/feature/1_daofactory_all_clone/typechain-types
