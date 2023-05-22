@@ -18,9 +18,10 @@ export default async function handler(
   const {
     productProfitRightNFTAddress,
     productJsonString,
-    productVariantsInitialInventoriesJsonString,
+    productVariantsJsonString,
     productOptionsJsonString,
     productImagesJsonString,
+    productInitialInventories,
   } = req.body;
 
   // Log the received data for debug purposes
@@ -29,12 +30,10 @@ export default async function handler(
     productProfitRightNFTAddress
   );
   console.log("Product JSON: ", productJsonString);
-  console.log(
-    "Product Variants Initial Inventories: ",
-    productVariantsInitialInventoriesJsonString
-  );
+  console.log("Product Variants: ", productVariantsJsonString);
   console.log("Product Options: ", productOptionsJsonString);
   console.log("Product Images: ", productImagesJsonString);
+  console.log("Product Initial Inventories: ", productInitialInventories);
 
   const sampleResponse = {
     message: "Product Registration Received",
