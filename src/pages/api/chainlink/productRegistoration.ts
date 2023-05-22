@@ -8,6 +8,7 @@ export default async function handler(
 ) {
   console.log(`Chainlink: Product Registration API`);
   console.log(`method: ${req.method}`);
+  console.log("body: ", req.body);
   if (req.method !== "POST") {
     res.statusCode = 405;
     res.setHeader("Allow", "POST");
