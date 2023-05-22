@@ -4,7 +4,7 @@ import { AccessTokenWalletAddress } from "@prisma/client";
 import { useAccount } from "wagmi";
 
 import { FormEvent, useCallback, useEffect, useState } from "react";
-import { Button, Input, Text, Link, VStack, Container, Heading } from "@chakra-ui/react";
+import { Button, Input, Text, Link, VStack, Container, Heading, InputGroup, InputLeftAddon, InputRightAddon } from "@chakra-ui/react";
 import NextLink from "next/link";
 
 export default function Home() {
@@ -13,14 +13,14 @@ export default function Home() {
   const [shopData, setShopData] = useState<any>();
   const { address } = useAccount();
 
-  const fetchShop = useCallback(async (accessToken: string) => {
+  const fetchShop = useCallback(async (atwa: AccessTokenWalletAddress) => {
     try {
       const response = await fetch("/api/store/getByAccessToken", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ accessToken }),
+        body: JSON.stringify({ accessToken: atwa.accessToken, storeUrl: atwa.storeUrl }),
       });
       if (response.ok) {
         const shopData = await response.json();
@@ -37,6 +37,7 @@ export default function Home() {
     async (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
       const accessToken = (event.target as HTMLFormElement).accessToken.value;
+      const storeUrl = (event.target as HTMLFormElement).storeUrl.value;
 
       try {
         const response = await fetch("/api/accessTokenWalletAddress/create", {
@@ -47,6 +48,7 @@ export default function Home() {
           body: JSON.stringify({
             accessToken,
             walletAddress: address,
+            storeUrl,
           }),
         });
         if (response.ok) {
@@ -134,7 +136,7 @@ export default function Home() {
       return;
     }
 
-    fetchShop(accessTokenWalletAddress.accessToken);
+    fetchShop(accessTokenWalletAddress);
   }, [accessTokenWalletAddress, fetchShop]);
 
   return (
@@ -181,6 +183,11 @@ export default function Home() {
                     type="password"
                     name="accessToken"
                   />
+                  <InputGroup>
+                    <InputLeftAddon>https://</InputLeftAddon>
+                    <Input name="storeUrl" placeholder='shopify-store-URL' />
+                    <InputRightAddon>.myshopify.com</InputRightAddon>
+                  </InputGroup>
                   <Button type="submit">Save access token</Button>
                 </VStack>
               </form>

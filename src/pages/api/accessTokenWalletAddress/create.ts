@@ -16,15 +16,18 @@ export default async function handler(
     return;
   }
 
-  const { accessToken, walletAddress } = req.body
+  const { accessToken, walletAddress, storeUrl } = req.body
   console.log(`accessToken: ${accessToken}`)
   console.log(`walletAddress: ${walletAddress}`)
+  console.log(`storeUrl: ${storeUrl}`)
+
 
   try {
     const data = await prisma.accessTokenWalletAddress.create({
       data: {
         accessToken,
-        walletAddress
+        walletAddress,
+        storeUrl,
       },
     })
 
