@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import { ProductRegistrationReqBody } from "./ShopifyAPITypes";
+import { ProductRegistrationReqBody } from "../../../types/ShopifyAPITypes";
 
 export default async function handler(
   req: NextApiRequest & { body: ProductRegistrationReqBody },
