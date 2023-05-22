@@ -1,0 +1,1 @@
+export { StoreInfoFetcher } from './StoreInfoFetcher'

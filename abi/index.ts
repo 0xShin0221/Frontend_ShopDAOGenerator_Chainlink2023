@@ -1,0 +1,1 @@
+export { _abi as _abiDaoFactory } from './DaoFactory'
