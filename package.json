@@ -30,7 +30,8 @@
     "react-dom": "18.2.0",
     "typescript": "5.0.4",
     "viem": "^0.3.19",
-    "wagmi": "^1.0.1"
+    "wagmi": "^1.0.1",
+    "web3": "^1.10.0"
   },
   "devDependencies": {}
 }
