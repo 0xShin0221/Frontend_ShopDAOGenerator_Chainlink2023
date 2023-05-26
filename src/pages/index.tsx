@@ -74,6 +74,7 @@ export default function Home() {
               storeUrl="https://google.com"
               symbol="SAMPLE"
               stats={{ proposals: 3, holders: 3, voters: 3 }}
+              id={String(i)}
             />
           ))}
         </SimpleGrid>

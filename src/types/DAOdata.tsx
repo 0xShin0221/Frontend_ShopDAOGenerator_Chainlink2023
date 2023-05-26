@@ -1,11 +1,12 @@
-import { Proposal as DAOProposal } from "./Proposals";
-export interface DAOStatsType {
+import { ProposalType } from "./Proposals";
+
+export type DAOStatsType = {
   proposals: number;
   holders: number;
   voters: number;
-}
+};
 
-export interface DAOContractParametersType {
+export type DAOContractParametersType = {
   proposalThreshold: number;
   quorumNeeded: string;
   proposalDelay: string;
@@ -13,13 +14,13 @@ export interface DAOContractParametersType {
   governor: string;
   token: string;
   timelock: string;
-}
+};
 
-export interface DAODataType {
+export type DAODataType = {
   name: string;
   storeUrl: string;
   symbol: string;
   stats: DAOStatsType;
-  proposals: DAOProposal[];
+  proposals: ProposalType[];
   contractParameters: DAOContractParametersType;
-}
+};

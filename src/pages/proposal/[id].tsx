@@ -25,7 +25,12 @@ import {
   statusUpdates,
 } from "../../mocks/Proposals";
 import { ReactNode } from "react";
-import { Proposal, ProposalDetails, Vote } from "@/types/Proposals";
+import {
+  ProposalType,
+  ProposalDetailsType,
+  VoteType,
+  StatusUpdateType,
+} from "@/types/Proposals";
 
 interface Props {
   children: ReactNode;
@@ -48,7 +53,7 @@ export const Card: React.FC<Props> = ({ children }: Props) => {
   );
 };
 
-const ProposalCard: React.FC<{ proposal: Proposal }> = ({ proposal }) => (
+const ProposalCard: React.FC<{ proposal: ProposalType }> = ({ proposal }) => (
   <Card>
     <Stack spacing="4">
       <Avatar size="2xl" name={proposal.title} />
@@ -60,7 +65,9 @@ const ProposalCard: React.FC<{ proposal: Proposal }> = ({ proposal }) => (
   </Card>
 );
 
-const DetailCard: React.FC<{ details: ProposalDetails }> = ({ details }) => (
+const DetailCard: React.FC<{ details: ProposalDetailsType }> = ({
+  details,
+}) => (
   <Card>
     <Box>
       <Heading as="h2" fontWeight="bold" fontSize="2xl">
@@ -72,7 +79,7 @@ const DetailCard: React.FC<{ details: ProposalDetails }> = ({ details }) => (
   </Card>
 );
 
-const VotesCard: React.FC<{ votes: Vote[] }> = ({ votes }) => (
+const VotesCard: React.FC<{ votes: VoteType[] }> = ({ votes }) => (
   <Card>
     <Box>
       <Heading as="h2" fontWeight="bold" fontSize="2xl">
@@ -89,7 +96,7 @@ const VotesCard: React.FC<{ votes: Vote[] }> = ({ votes }) => (
   </Card>
 );
 
-const StatusCard: React.FC<{ statusUpdates: StatusUpdate[] }> = ({
+const StatusCard: React.FC<{ statusUpdates: StatusUpdateType[] }> = ({
   statusUpdates,
 }) => (
   <Card>

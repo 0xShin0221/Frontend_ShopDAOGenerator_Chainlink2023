@@ -18,11 +18,14 @@ import { FiExternalLink, FiFileText, FiSettings } from "react-icons/fi";
 import router, { useRouter } from "next/router";
 
 import { DAOData } from "../../mocks/DAOs";
-import type { DAODataProps, DAOContractParameters } from "../../types/DAOdata";
-import type { Proposal as DAOProposal } from "../../types/Proposals";
+import type {
+  DAODataType,
+  DAOContractParametersType,
+} from "../../types/DAOdata";
+import type { ProposalType } from "../../types/Proposals";
 import { DAOStat } from "../../components/Stats";
 
-const DAOInfo: React.FC<{ daoData: DAODataProps }> = ({ daoData }) => (
+const DAOInfo: React.FC<{ daoData: DAODataType }> = ({ daoData }) => (
   <>
     <Heading size={{ base: "sm", md: "md" }}>{daoData.name}</Heading>
     <HStack>
@@ -46,7 +49,7 @@ const DAOInfo: React.FC<{ daoData: DAODataProps }> = ({ daoData }) => (
   </>
 );
 
-const ProposalsList: React.FC<{ proposals: DAOProposal[] }> = ({
+const ProposalsList: React.FC<{ proposals: ProposalType[] }> = ({
   proposals,
 }) => (
   <VStack spacing="4" align="start">
@@ -61,7 +64,7 @@ const ProposalsList: React.FC<{ proposals: DAOProposal[] }> = ({
 );
 
 const ContractParameters: React.FC<{
-  contractParameters: DAOContractParameters;
+  contractParameters: DAOContractParametersType;
 }> = ({ contractParameters }) => (
   <VStack spacing="4" align="start">
     <Heading size="md">Contract Addresses</Heading>

@@ -1,23 +1,23 @@
-export interface ProposalType {
+export type ProposalType = {
   status: string;
   title: string;
   id: string;
   date: string;
   description: string;
-  // Add more details as per your requirements
-}
-export interface ProposalDetailsType {
+};
+
+export type ProposalDetailsType = {
   description: string;
   executableCode: string;
-}
+};
 
-export interface VoteType {
+export type VoteType = {
   userImg: string;
   voter: string;
   voteValue: string;
-}
+};
 
-export interface StatusUpdateType {
+export type StatusUpdateType = {
   date: string;
   action: string;
-}
+};
