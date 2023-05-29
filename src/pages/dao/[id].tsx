@@ -86,7 +86,7 @@ const DAOInfo: React.FC<{ daoData: DAODataType }> = ({ daoData }) => (
           Contract Info
         </Heading>
 
-        <Accordion allowMultiple>
+        <Accordion defaultIndex={[0, 1]} allowMultiple>
           <AccordionItem>
             <h2>
               <AccordionButton>
@@ -97,57 +97,43 @@ const DAOInfo: React.FC<{ daoData: DAODataType }> = ({ daoData }) => (
               </AccordionButton>
             </h2>
             <AccordionPanel pb={4}>
-              <Stack
+              <HStack
                 spacing="4"
                 direction={{ base: "column", sm: "row" }}
                 justify="space-between"
               >
-                <Stack spacing="1">
-                  <Text fontSize="md" fontWeight="medium">
-                    Governor
-                  </Text>
-                  <Text color="muted" fontSize="sm">
-                    {daoData.contractParameters?.governor}
-                  </Text>
-                </Stack>
-                <Button variant="primary" alignSelf="start">
-                  Invite
-                </Button>
-              </Stack>
-              <Stack
+                <Text fontSize="md" fontWeight="medium">
+                  Governor
+                </Text>
+                <Text color="muted" fontSize="sm">
+                  {daoData.contractParameters?.governor}
+                </Text>
+              </HStack>
+              <HStack
                 spacing="4"
                 direction={{ base: "column", sm: "row" }}
                 justify="space-between"
               >
-                <Stack spacing="1">
-                  <Text fontSize="md" fontWeight="medium">
-                    Governance Token
-                  </Text>
-                  <Text color="muted" fontSize="sm">
-                    {daoData.contractParameters?.token}
-                  </Text>
-                </Stack>
-                <Button variant="primary" alignSelf="start">
-                  Invite
-                </Button>
-              </Stack>
-              <Stack
+                <Text fontSize="md" fontWeight="medium">
+                  Governance Token
+                </Text>
+                <Text color="muted" fontSize="sm">
+                  {daoData.contractParameters?.token}
+                </Text>
+              </HStack>
+
+              <HStack
                 spacing="4"
                 direction={{ base: "column", sm: "row" }}
                 justify="space-between"
               >
-                <Stack spacing="1">
-                  <Text fontSize="md" fontWeight="medium">
-                    Timelock
-                  </Text>
-                  <Text color="muted" fontSize="sm">
-                    {daoData.contractParameters?.timelock}
-                  </Text>
-                </Stack>
-                <Button variant="primary" alignSelf="start">
-                  Invite
-                </Button>
-              </Stack>
+                <Text fontSize="md" fontWeight="medium">
+                  Timelock
+                </Text>
+                <Text color="muted" fontSize="sm">
+                  {daoData.contractParameters?.timelock}
+                </Text>
+              </HStack>
             </AccordionPanel>
           </AccordionItem>
 
@@ -248,6 +234,8 @@ export default function Dao() {
       borderColor="accent"
       backgroundColor={"gray.100"}
     >
+      <DAOInfo daoData={DAOData} />
+
       <ShopDetailCard
         key={String(id)}
         name={name}
@@ -256,8 +244,6 @@ export default function Dao() {
         stats={stats}
         id={String(id)}
       />
-      <DAOInfo daoData={DAOData} />
-
       <Box
         borderWidth={{ base: "0", md: "1px" }}
         p={{ base: "0", md: "4" }}
