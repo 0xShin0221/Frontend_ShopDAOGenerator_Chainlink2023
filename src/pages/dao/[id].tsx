@@ -17,6 +17,7 @@ import {
   AlertIcon,
 } from "@chakra-ui/react";
 import { FiExternalLink, FiFileText, FiSettings } from "react-icons/fi";
+import Head from "next/head";
 import router, { useRouter } from "next/router";
 
 import { DAOData } from "../../mocks/DAOs";
@@ -84,66 +85,92 @@ const ContractParameters: React.FC<{
   </VStack>
 );
 
-export default function Dao() {
+type Props = {
+  title: string;
+  description: string;
+};
+
+export default function Dao({ title, description }: Props) {
   const router = useRouter();
   const { id } = router.query;
 
   const { proposals, contractParameters } = DAOData;
 
   return (
-    <Container maxW="3xl">
-      <Box
-        bg="bg-surface"
-        boxShadow="sm"
-        borderRadius="lg"
-        p={{ base: "4", md: "6" }}
-      >
-        <Stack spacing="5">
-          <Stack spacing="1">
-            <DAOInfo daoData={DAOData} />
+    <>
+      <Head>
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+      </Head>
+      <Container maxW="3xl">
+        <Box
+          bg="bg-surface"
+          boxShadow="sm"
+          borderRadius="lg"
+          p={{ base: "4", md: "6" }}
+        >
+          <Stack spacing="5">
+            <Stack spacing="1">
+              <DAOInfo daoData={DAOData} />
+            </Stack>
+            <Box
+              borderWidth={{ base: "0", md: "1px" }}
+              p={{ base: "0", md: "4" }}
+              borderRadius="lg"
+            >
+              <Stack
+                justify="space-between"
+                direction={{ base: "column", md: "row" }}
+                spacing="5"
+              >
+                {proposals ? (
+                  <ProposalsList proposals={proposals} />
+                ) : (
+                  <Alert status="info">
+                    <AlertIcon />
+                    No proposals
+                  </Alert>
+                )}
+              </Stack>
+            </Box>
+            <Box
+              borderWidth={{ base: "0", md: "1px" }}
+              p={{ base: "0", md: "4" }}
+              borderRadius="lg"
+            >
+              <Stack
+                justify="space-between"
+                direction={{ base: "column", md: "row" }}
+                spacing="5"
+              >
+                {contractParameters ? (
+                  <ContractParameters contractParameters={contractParameters} />
+                ) : (
+                  <Alert status="info">
+                    <AlertIcon />
+                    No contract parameters
+                  </Alert>
+                )}
+              </Stack>
+            </Box>
           </Stack>
-          <Box
-            borderWidth={{ base: "0", md: "1px" }}
-            p={{ base: "0", md: "4" }}
-            borderRadius="lg"
-          >
-            <Stack
-              justify="space-between"
-              direction={{ base: "column", md: "row" }}
-              spacing="5"
-            >
-              {proposals ? (
-                <ProposalsList proposals={proposals} />
-              ) : (
-                <Alert status="info">
-                  <AlertIcon />
-                  No proposals
-                </Alert>
-              )}
-            </Stack>
-          </Box>
-          <Box
-            borderWidth={{ base: "0", md: "1px" }}
-            p={{ base: "0", md: "4" }}
-            borderRadius="lg"
-          >
-            <Stack
-              justify="space-between"
-              direction={{ base: "column", md: "row" }}
-              spacing="5"
-            >
-              {contractParameters ? (
-                <ContractParameters contractParameters={contractParameters} />
-              ) : (
-                <Alert status="info">
-                  <AlertIcon />
-                  No contract parameters
-                </Alert>
-              )}
-            </Stack>
-          </Box>
-        </Stack>
-      </Box>
-    </Container>
+        </Box>
+      </Container>
+    </>
   );
+}
+
+export async function getServerSideProps() {
+  // TODO: fetch data from API
+  const title = DAOData.name;
+  const description = "This page is the DAO Name`s page";
+
+  return {
+    props: {
+      title,
+      description,
+    },
+  };
 }
