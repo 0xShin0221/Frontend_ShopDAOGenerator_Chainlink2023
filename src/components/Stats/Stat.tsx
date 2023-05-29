@@ -22,9 +22,10 @@ interface Props {
     value: string;
     isUpwardsTrend: boolean;
   };
+  link?: string;
 }
 export const Stat = (props: Props) => {
-  const { label, value, delta, ...boxProps } = props;
+  const { label, value, delta, link, ...boxProps } = props;
   return (
     <Box borderRadius="lg" boxShadow="sm" {...boxProps}>
       <Box px={{ base: "4", md: "8" }} py={{ base: "6", md: "10" }}>
@@ -54,7 +55,14 @@ export const Stat = (props: Props) => {
       </Box>
       <Divider />
       <Box px={{ base: "4", md: "8" }} py="4">
-        <Button variant="link" colorScheme="purple" size="sm">
+        <Button
+          variant="link"
+          colorScheme="purple"
+          size="sm"
+          onClick={() => {
+            if (props.link) window.location.href = props.link;
+          }}
+        >
           Learn more
         </Button>
       </Box>
