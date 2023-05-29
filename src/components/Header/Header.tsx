@@ -29,12 +29,12 @@ export const Header = memo((): JSX.Element => {
               src="/img/logo.png" // replace with your logo path
               boxSize="25px" // adjust as needed
               objectFit="cover"
-              alt="Your logo"
+              alt="logo"
               mr={2}
             />
 
             <Text
-              fontSize="2xl"
+              fontSize="xl"
               fontWeight="bold"
               bgGradient="linear(to-r, brand.900,brandSubColor.900)"
               bgClip="text"
