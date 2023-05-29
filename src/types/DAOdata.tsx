@@ -17,10 +17,11 @@ export type DAOContractParametersType = {
 };
 
 export type DAODataType = {
+  id: string;
   name: string;
   storeUrl: string;
   symbol: string;
   stats: DAOStatsType;
-  proposals: ProposalType[];
-  contractParameters: DAOContractParametersType;
+  proposals?: ProposalType[];
+  contractParameters?: DAOContractParametersType;
 };

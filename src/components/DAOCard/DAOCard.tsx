@@ -1,27 +1,24 @@
+import { DAODataType } from "@/types/DAOdata";
 import {
   Button,
   Box,
   Text,
   Avatar,
+  Image,
   Badge,
   Stack,
   HStack,
   SimpleGrid,
   Container,
   Link,
+  Flex,
+  VStack,
+  Divider,
 } from "@chakra-ui/react";
 
-interface DAOCardProps {
-  id: string;
-  daoName: string;
-  storeUrl: string;
-  symbol: string;
-  stats: { proposals: number; holders: number; voters: number };
-}
-
-export const DAOCard: React.FC<DAOCardProps> = ({
+export const DAOCard: React.FC<DAODataType> = ({
   id,
-  daoName,
+  name,
   storeUrl,
   symbol,
   stats,
@@ -39,39 +36,64 @@ export const DAOCard: React.FC<DAOCardProps> = ({
       direction={{ base: "column", sm: "row" }}
       justify="space-between"
     >
-      <Link href={`/dao/${id}`}>
-        <HStack spacing="4">
-          <Avatar
-            src="https://tinyurl.com/yhkm2ek8"
-            name={daoName}
-            boxSize={{ base: "12", sm: "14" }}
-          />
+      <HStack spacing="4" justifyContent="space-between" width="full">
+        <Link href={`/dao/${id}`}>
           <Box>
-            <HStack>
-              <Text fontSize="lg" fontWeight="medium">
-                {daoName}
-              </Text>
-              <Badge variant="subtle" colorScheme="purple">
-                Symbol: {symbol}
-              </Badge>
-            </HStack>
-            <Text color="muted" fontSize="sm">
-              Proposals: {stats.proposals}, Holders: {stats.holders}, Voters:{" "}
-              {stats.voters}
+            <Text fontSize="sm" fontWeight="medium">
+              {name}
             </Text>
+            <Badge size={"xs"}>Symbol: {symbol}</Badge>
           </Box>
-        </HStack>
-      </Link>
-      <Stack direction="row" spacing="3">
-        <Button
-          as="a"
-          href={storeUrl}
-          colorScheme="brandSubColor"
-          variant="ghost"
-        >
-          Go to Store
-        </Button>
-      </Stack>
+        </Link>
+        <VStack py={"2"}>
+          <HStack>
+            <Image
+              boxSize="100px"
+              objectFit="cover"
+              src="https://htmlburger.com/blog/wp-content/uploads/2022/07/Shopify-Website-Examples.jpg"
+              alt="Shop OGP"
+            />
+            <VStack align="start">
+              <Text fontSize="md" fontWeight="bold">
+                Sample OGP Title
+              </Text>
+              <Text fontSize="sm" color="gray.500">
+                Sample OGP Description that summarizes the content of the
+                website.
+              </Text>
+            </VStack>
+          </HStack>
+          <Button
+            size={"xs"}
+            as="a"
+            href={storeUrl}
+            colorScheme="brandSubColor"
+          >
+            Go to Store
+          </Button>
+        </VStack>
+      </HStack>
     </Stack>
+    <Divider my="2" />
+    <Flex justify="space-between" color="gray.500" fontSize="sm">
+      <Box>
+        <Text as="span" fontWeight="bold">
+          Proposals:{" "}
+        </Text>
+        <Text as="span">{stats.proposals}</Text>
+      </Box>
+      <Box>
+        <Text as="span" fontWeight="bold">
+          Holders:{" "}
+        </Text>
+        <Text as="span">{stats.holders}</Text>
+      </Box>
+      <Box>
+        <Text as="span" fontWeight="bold">
+          Voters:{" "}
+        </Text>
+        <Text as="span">{stats.voters}</Text>
+      </Box>
+    </Flex>
   </Box>
 );

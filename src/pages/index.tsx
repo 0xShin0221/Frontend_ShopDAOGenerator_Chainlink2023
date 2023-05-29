@@ -26,6 +26,7 @@ import { useRouter } from "next/router";
 import { FirstView } from "@/components/Heros";
 import { AppStats } from "@/components/Stats";
 import { DAOCard } from "@/components/DAOCard";
+import { DAODataList } from "@/mocks/DAOs";
 
 export default function Home() {
   const router = useRouter();
@@ -56,7 +57,7 @@ export default function Home() {
               </Heading>
             </Stack>
             <Text color="muted" fontSize={{ base: "lg", md: "xl" }} maxW="3xl">
-              Get early access to 210+ components and free updates.
+              List of shopDAO generator governance DAOs
             </Text>
           </Stack>
         </Container>
@@ -67,14 +68,14 @@ export default function Home() {
           px={{ base: "4", md: "6" }}
           py={{ base: "4", md: "6" }}
         >
-          {[...Array(10)].map((_, i) => (
+          {DAODataList.map((daoData) => (
             <DAOCard
-              key={i}
-              daoName="DAO"
-              storeUrl="https://google.com"
-              symbol="SAMPLE"
-              stats={{ proposals: 3, holders: 3, voters: 3 }}
-              id={String(i)}
+              key={daoData.id}
+              name={daoData.name}
+              storeUrl={daoData.storeUrl}
+              symbol={daoData.symbol}
+              stats={daoData.stats}
+              id={daoData.id}
             />
           ))}
         </SimpleGrid>

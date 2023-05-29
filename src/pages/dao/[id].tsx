@@ -13,6 +13,8 @@ import {
   Heading,
   Badge,
   Stat,
+  Alert,
+  AlertIcon,
 } from "@chakra-ui/react";
 import { FiExternalLink, FiFileText, FiSettings } from "react-icons/fi";
 import router, { useRouter } from "next/router";
@@ -110,7 +112,14 @@ export default function Dao() {
               direction={{ base: "column", md: "row" }}
               spacing="5"
             >
-              <ProposalsList proposals={proposals} />
+              {proposals ? (
+                <ProposalsList proposals={proposals} />
+              ) : (
+                <Alert status="info">
+                  <AlertIcon />
+                  No proposals
+                </Alert>
+              )}
             </Stack>
           </Box>
           <Box
@@ -123,7 +132,14 @@ export default function Dao() {
               direction={{ base: "column", md: "row" }}
               spacing="5"
             >
-              <ContractParameters contractParameters={contractParameters} />
+              {contractParameters ? (
+                <ContractParameters contractParameters={contractParameters} />
+              ) : (
+                <Alert status="info">
+                  <AlertIcon />
+                  No contract parameters
+                </Alert>
+              )}
             </Stack>
           </Box>
         </Stack>
