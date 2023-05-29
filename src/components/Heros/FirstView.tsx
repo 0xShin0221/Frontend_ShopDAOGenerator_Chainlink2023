@@ -81,22 +81,15 @@ export const FirstView = memo((): JSX.Element => {
             </LightMode>
           </Stack>
 
-          <Box
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            height="100vh"
-          >
-            <Box textAlign="center">
-              <Img
-                borderRadius="lg"
-                alt="System architect for users"
-                src="img/V3.png"
-                mx="auto"
-                maxW="80%"
-              />
-            </Box>
-          </Box>
+          <Img
+            borderRadius={"2xl"}
+            alt="System architect for users"
+            src="img/V3.png"
+            mx="auto"
+            width={{ base: "90%", md: "90%" }}
+            height={{ base: "50%", md: "90%" }}
+            objectFit="contain"
+          />
         </Box>
       </Box>
 
