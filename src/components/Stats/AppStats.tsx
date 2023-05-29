@@ -3,19 +3,19 @@ import { Stat } from "./Stat";
 
 const stats = [
   {
-    label: "Total Subscribers",
-    value: "71,887",
+    label: "Gross Distribution",
+    value: "$" + "1,88720",
+    delta: { value: "0.1%", isUpwardsTrend: false },
+  },
+  {
+    label: "Total Distribution",
+    value: "$" + "71,887",
     delta: { value: "320", isUpwardsTrend: true },
   },
   {
-    label: "Avg. Open Rate",
-    value: "56.87%",
-    delta: { value: "2.3%", isUpwardsTrend: true },
-  },
-  {
-    label: "Avg. Click Rate",
-    value: "12.87%",
-    delta: { value: "0.1%", isUpwardsTrend: false },
+    label: "Total Distributed Accounts",
+    value: "5687",
+    delta: { value: "23", isUpwardsTrend: true },
   },
 ];
 

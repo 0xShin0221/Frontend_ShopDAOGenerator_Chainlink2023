@@ -33,7 +33,7 @@ export const Stat = (props: Props) => {
             <Text fontSize="lg" color="muted">
               {label}
             </Text>
-            <Icon as={FiMoreVertical} boxSize="6" color="muted" />
+            {/* <Icon as={FiMoreVertical} boxSize="6" color="muted" /> */}
           </HStack>
           <HStack justify="space-between">
             <Heading size={{ base: "lg", md: "xl" }}>{value}</Heading>
