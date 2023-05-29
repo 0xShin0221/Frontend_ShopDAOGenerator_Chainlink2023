@@ -27,9 +27,12 @@ export const DAOCard: React.FC<DAODataType> = ({
     width={{ base: "full", md: "auto" }}
     bg="bg-surface"
     px={{ base: "4", md: "6" }}
-    py="5"
-    boxShadow="sm"
+    py="4"
+    rounded="lg"
+    borderRadius="lg"
+    m={"2"}
     borderColor="accent"
+    backgroundColor={"white"}
   >
     <Stack
       spacing="4"
@@ -46,31 +49,36 @@ export const DAOCard: React.FC<DAODataType> = ({
           </Box>
         </Link>
         <VStack py={"2"}>
-          <HStack>
+          <Stack
+            spacing="4"
+            direction={{ base: "column", sm: "row" }}
+            justifyContent="space-between"
+            width="full"
+          >
             <Image
-              boxSize="100px"
+              boxSize={{ base: "80px", sm: "100px" }}
               objectFit="cover"
               src="https://htmlburger.com/blog/wp-content/uploads/2022/07/Shopify-Website-Examples.jpg"
               alt="Shop OGP"
             />
             <VStack align="start">
-              <Text fontSize="md" fontWeight="bold">
+              <Text fontSize="sm" fontWeight="bold">
                 Sample OGP Title
               </Text>
               <Text fontSize="sm" color="gray.500">
                 Sample OGP Description that summarizes the content of the
                 website.
               </Text>
+              <Button
+                size={"xs"}
+                as="a"
+                href={storeUrl}
+                colorScheme="brandSubColor"
+              >
+                Go to Store
+              </Button>
             </VStack>
-          </HStack>
-          <Button
-            size={"xs"}
-            as="a"
-            href={storeUrl}
-            colorScheme="brandSubColor"
-          >
-            Go to Store
-          </Button>
+          </Stack>
         </VStack>
       </HStack>
     </Stack>
