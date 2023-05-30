@@ -1,3 +1,5 @@
+import { OgObject } from 'open-graph-scraper/dist/lib/types';
+
 import { DAODataType } from "@/types/DAOdata";
 import {
   Button,
@@ -16,12 +18,13 @@ import {
   Divider,
 } from "@chakra-ui/react";
 
-export const DAOCard: React.FC<DAODataType> = ({
+export const DAOCard: React.FC<DAODataType & { og: OgObject }> = ({
   id,
   name,
   storeUrl,
   symbol,
   stats,
+  og
 }) => (
   <Box
     width={{ base: "full", md: "auto" }}
@@ -49,17 +52,16 @@ export const DAOCard: React.FC<DAODataType> = ({
           <HStack>
             <Image
               boxSize="100px"
-              objectFit="cover"
-              src="https://htmlburger.com/blog/wp-content/uploads/2022/07/Shopify-Website-Examples.jpg"
-              alt="Shop OGP"
+              objectFit="contain"
+              src={og.ogImage?.[0].url ?? 'https://htmlburger.com/blog/wp-content/uploads/2022/07/Shopify-Website-Examples.jpg'}
+              alt={og.ogTitle}
             />
             <VStack align="start">
               <Text fontSize="md" fontWeight="bold">
-                Sample OGP Title
+                {og.ogTitle}
               </Text>
               <Text fontSize="sm" color="gray.500">
-                Sample OGP Description that summarizes the content of the
-                website.
+                {og.ogDescription}
               </Text>
             </VStack>
           </HStack>

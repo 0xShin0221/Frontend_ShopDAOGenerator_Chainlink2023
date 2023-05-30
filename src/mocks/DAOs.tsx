@@ -378,4 +378,29 @@ export const DAODataList: DAODataType[] = [
       timelock: "0xc93f9d60db89ea8ca4eb9968c7aff8cfa07b3c93",
     },
   },
+  {
+    id: "9",
+    name: "VercelDAO",
+    storeUrl: "https://vercel.com/docs/concepts/functions/edge-functions/og-image-generation#examples",
+    symbol: "VDAO",
+    stats: { proposals: 7, holders: 100, voters: 80 },
+    proposals: [
+      {
+        status: "EXECUTED",
+        title: "Proposal 1",
+        id: "0x28ea5eb1bc53f3852158a46416341e9873c79d41",
+        date: "Apr 30th, 2023",
+        description: "Proposal executed",
+      },
+    ],
+    contractParameters: {
+      proposalThreshold: 8,
+      quorumNeeded: "7.10M",
+      proposalDelay: "1 hour",
+      votingPeriod: "10 hours",
+      governor: "0x4b489f78fe73f522671d78f350bc1e4dd39a0f44",
+      token: "0x7f53e69ea92b2233859b024c93c350d59d17b154",
+      timelock: "0xa83f8d60db89ea8ca4eb9968c7aff8cfa05b3c73",
+    },
+  },
 ];
