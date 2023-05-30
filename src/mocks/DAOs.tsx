@@ -615,4 +615,84 @@ export const DAODataList: DAODataType[] = [
       timelock: "0xc93f9d60db89ea8ca4eb9968c7aff8cfa07b3c93",
     },
   },
+  {
+    id: "9",
+    name: "VercelDAO",
+    storeUrl:
+      "https://vercel.com/docs/concepts/functions/edge-functions/og-image-generation#examples",
+    symbol: "VDAO",
+    stats: { proposals: 7, holders: 100, voters: 80 },
+    proposals: [
+      {
+        status: "Succeeded",
+        title:
+          "[EP3.5] [Executable] Activate new .eth Controller and Reverse Registrar",
+        id: "429737...8242",
+        createdAt: "Mar 29th, 2023",
+        updatedAt: "Mar 30th, 2023",
+        description:
+          "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id.",
+        imageUrl: ["https://tinyurl.com/yh2xkpzm"],
+        category: "ProductPropose",
+        author: {
+          name: "0x1234567890abcdef0123456789abcdef01234567",
+          avatarUrl: "https://tinyurl.com/2p8fy9ym",
+        },
+      },
+      {
+        status: "Pending",
+        title: "[EP3.7] [Executable] Improve User Experience Design",
+        id: "492720...3521",
+        createdAt: "Apr 4th, 2023",
+        updatedAt: "Apr 5th, 2023",
+        description:
+          "Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        imageUrl: ["https://tinyurl.com/yh2xkpzm"],
+        category: "GeneralPropose",
+        author: {
+          name: "0x0123456789abcdef0123456789abcdef01234567",
+          avatarUrl: "https://tinyurl.com/47fb3b7z",
+        },
+      },
+      {
+        status: "Active",
+        title: "[EP3.8] [Executable] Enhance Security Measures",
+        id: "574893...7243",
+        createdAt: "Apr 6th, 2023",
+        updatedAt: "Apr 7th, 2023",
+        description:
+          "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        imageUrl: ["https://tinyurl.com/yh2xkpzm"],
+        category: "ProductPropose",
+        author: {
+          name: "0xabcdef0123456789abcdef0123456789abcdef12",
+          avatarUrl: "https://tinyurl.com/3sy2cb7k",
+        },
+      },
+      {
+        status: "Executed",
+        title: "[EP3.9] [Executable] Expand Market Reach",
+        id: "686453...1254",
+        createdAt: "Apr 8th, 2023",
+        updatedAt: "Apr 9th, 2023",
+        description:
+          "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        imageUrl: ["https://tinyurl.com/yh2xkpzm"],
+        category: "GeneralPropose",
+        author: {
+          name: "0x0123456789abcdef0123456789abcdefabcdef01",
+          avatarUrl: "https://tinyurl.com/2zkcysf9",
+        },
+      },
+    ],
+    contractParameters: {
+      proposalThreshold: 8,
+      quorumNeeded: "7.10M",
+      proposalDelay: "1 hour",
+      votingPeriod: "10 hours",
+      governor: "0x4b489f78fe73f522671d78f350bc1e4dd39a0f44",
+      token: "0x7f53e69ea92b2233859b024c93c350d59d17b154",
+      timelock: "0xa83f8d60db89ea8ca4eb9968c7aff8cfa05b3c73",
+    },
+  },
 ];

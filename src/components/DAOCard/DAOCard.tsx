@@ -1,15 +1,14 @@
-import { DAODataType, DAOStatsType } from "@/types/DAOdata";
+import { OgObject } from 'open-graph-scraper/dist/lib/types';
+
+import { DAOStatsType } from "@/types/DAOdata";
 import {
   Button,
   Box,
   Text,
-  Avatar,
   Image,
   Badge,
   Stack,
   HStack,
-  SimpleGrid,
-  Container,
   Link,
   Flex,
   VStack,
@@ -23,12 +22,14 @@ type DAOCardProps = {
   symbol: string;
   stats: DAOStatsType;
 };
-export const DAOCard: React.FC<DAOCardProps> = ({
+
+export const DAOCard: React.FC<DAOCardProps & { og: OgObject }> = ({
   id,
   name,
   storeUrl,
   symbol,
   stats,
+  og
 }) => (
   <Box
     width={{ base: "full", md: "auto" }}
@@ -65,16 +66,15 @@ export const DAOCard: React.FC<DAOCardProps> = ({
             <Image
               boxSize={{ base: "80px", sm: "100px" }}
               objectFit="cover"
-              src="https://htmlburger.com/blog/wp-content/uploads/2022/07/Shopify-Website-Examples.jpg"
-              alt="Shop OGP"
+              src={(typeof og.ogImage === 'string' ? og.ogImage : Array.isArray(og.ogImage) ? og.ogImage.at(0)?.url : og.ogImage?.url) ?? 'https://htmlburger.com/blog/wp-content/uploads/2022/07/Shopify-Website-Examples.jpg'}
+              alt={og.ogTitle}
             />
             <VStack align="start">
               <Text fontSize="sm" fontWeight="bold">
-                Sample OGP Title
+                {og.ogTitle}
               </Text>
               <Text fontSize="sm" color="gray.500">
-                Sample OGP Description that summarizes the content of the
-                website.
+                {og.ogDescription}
               </Text>
               <Button
                 size={"xs"}
