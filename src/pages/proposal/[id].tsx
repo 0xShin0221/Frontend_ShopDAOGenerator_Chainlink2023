@@ -18,12 +18,7 @@ import {
 } from "@chakra-ui/react";
 import { GoCalendar, GoPencil, GoGlobe } from "react-icons/go";
 import { useRouter } from "next/router";
-import {
-  proposalData,
-  proposalDetails,
-  votes,
-  statusUpdates,
-} from "../../mocks/Proposals";
+import { proposalDetails, votes, statusUpdates } from "../../mocks/Proposals";
 import { ReactNode } from "react";
 import {
   ProposalType,
@@ -31,6 +26,7 @@ import {
   VoteType,
   StatusUpdateType,
 } from "@/types/Proposals";
+import { DAOData } from "@/mocks/DAOs";
 
 interface Props {
   children: ReactNode;
@@ -125,7 +121,7 @@ export default function ProposalPage() {
         gap={1}
       >
         <GridItem rowSpan={1} colSpan={{ base: 1, md: 3 }}>
-          <ProposalCard proposal={proposalData} />
+          <ProposalCard proposal={DAOData.proposals[0]} />
         </GridItem>
         <GridItem rowSpan={2}>
           <DetailCard details={proposalDetails} />

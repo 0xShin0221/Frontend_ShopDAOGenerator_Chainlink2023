@@ -1,24 +1,29 @@
 import { OgObject } from 'open-graph-scraper/dist/lib/types';
 
-import { DAODataType } from "@/types/DAOdata";
+import { DAOStatsType } from "@/types/DAOdata";
 import {
   Button,
   Box,
   Text,
-  Avatar,
   Image,
   Badge,
   Stack,
   HStack,
-  SimpleGrid,
-  Container,
   Link,
   Flex,
   VStack,
   Divider,
 } from "@chakra-ui/react";
 
-export const DAOCard: React.FC<DAODataType & { og: OgObject }> = ({
+type DAOCardProps = {
+  id: string;
+  name: string;
+  storeUrl: string;
+  symbol: string;
+  stats: DAOStatsType;
+};
+
+export const DAOCard: React.FC<DAOCardProps & { og: OgObject }> = ({
   id,
   name,
   storeUrl,
@@ -30,9 +35,12 @@ export const DAOCard: React.FC<DAODataType & { og: OgObject }> = ({
     width={{ base: "full", md: "auto" }}
     bg="bg-surface"
     px={{ base: "4", md: "6" }}
-    py="5"
-    boxShadow="sm"
+    py="4"
+    rounded="lg"
+    borderRadius="lg"
+    m={"2"}
     borderColor="accent"
+    backgroundColor={"white"}
   >
     <Stack
       spacing="4"
@@ -49,30 +57,35 @@ export const DAOCard: React.FC<DAODataType & { og: OgObject }> = ({
           </Box>
         </Link>
         <VStack py={"2"}>
-          <HStack>
+          <Stack
+            spacing="4"
+            direction={{ base: "column", sm: "row" }}
+            justifyContent="space-between"
+            width="full"
+          >
             <Image
-              boxSize="100px"
-              objectFit="contain"
+              boxSize={{ base: "80px", sm: "100px" }}
+              objectFit="cover"
               src={og.ogImage?.[0].url ?? 'https://htmlburger.com/blog/wp-content/uploads/2022/07/Shopify-Website-Examples.jpg'}
               alt={og.ogTitle}
             />
             <VStack align="start">
-              <Text fontSize="md" fontWeight="bold">
+              <Text fontSize="sm" fontWeight="bold">
                 {og.ogTitle}
               </Text>
               <Text fontSize="sm" color="gray.500">
                 {og.ogDescription}
               </Text>
+              <Button
+                size={"xs"}
+                as="a"
+                href={storeUrl}
+                colorScheme="brandSubColor"
+              >
+                Go to Store
+              </Button>
             </VStack>
-          </HStack>
-          <Button
-            size={"xs"}
-            as="a"
-            href={storeUrl}
-            colorScheme="brandSubColor"
-          >
-            Go to Store
-          </Button>
+          </Stack>
         </VStack>
       </HStack>
     </Stack>

@@ -22,6 +22,6 @@ export type DAODataType = {
   storeUrl: string;
   symbol: string;
   stats: DAOStatsType;
-  proposals?: ProposalType[];
+  proposals: ProposalType[];
   contractParameters?: DAOContractParametersType;
 };
