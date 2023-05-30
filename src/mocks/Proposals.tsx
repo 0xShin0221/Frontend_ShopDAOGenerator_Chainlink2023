@@ -5,16 +5,6 @@ import {
   VoteType,
 } from "@/types/Proposals";
 
-export const proposalData: ProposalType = {
-  status: "EXECUTED",
-  title:
-    "[EP3.5] [Executable] Activate new .eth Controller and Reverse Registrar",
-  id: "429737...8242",
-  date: "Mar 29th, 2023",
-  description: "Proposal executed",
-  // Add more details as per your requirements
-};
-
 export const proposalDetails: ProposalDetailsType = {
   description: "Description of the proposal",
   executableCode: "Executable code of the proposal",

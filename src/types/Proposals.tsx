@@ -1,9 +1,26 @@
+type ProposalState =
+  | "Pending"
+  | "Active"
+  | "Canceled"
+  | "Defeated"
+  | "Succeeded"
+  | "Queued"
+  | "Expired"
+  | "Executed";
+
 export type ProposalType = {
-  status: string;
+  status: ProposalState;
   title: string;
   id: string;
-  date: string;
+  createdAt: string;
+  updatedAt: string;
   description: string;
+  imageUrl: string[];
+  category: "ProductPropose" | "GeneralPropose";
+  author: {
+    name: string;
+    avatarUrl: string;
+  };
 };
 
 export type ProposalDetailsType = {

@@ -1,4 +1,4 @@
-import { DAODataType } from "@/types/DAOdata";
+import { DAODataType, DAOStatsType } from "@/types/DAOdata";
 import {
   Button,
   Box,
@@ -16,7 +16,14 @@ import {
   Divider,
 } from "@chakra-ui/react";
 
-export const DAOCard: React.FC<DAODataType> = ({
+type DAOCardProps = {
+  id: string;
+  name: string;
+  storeUrl: string;
+  symbol: string;
+  stats: DAOStatsType;
+};
+export const DAOCard: React.FC<DAOCardProps> = ({
   id,
   name,
   storeUrl,

@@ -15,13 +15,10 @@ import {
 } from "@chakra-ui/react";
 import { FiExternalLink } from "react-icons/fi";
 
-export const ShopDetailCard: React.FC<DAODataType> = ({
-  id,
-  name,
-  storeUrl,
-  symbol,
-  stats,
-}) => (
+interface ShopDetailCardProps {
+  storeUrl: string;
+}
+export const ShopDetailCard: React.FC<ShopDetailCardProps> = ({ storeUrl }) => (
   <Card
     width={{ base: "full", md: "auto" }}
     bg="bg-surface"
@@ -44,9 +41,10 @@ export const ShopDetailCard: React.FC<DAODataType> = ({
 
       <VStack align="start" spacing="3">
         <CardBody>
-          <CardHeader>
-            <Heading size="md">Sample OGP Title Client Report</Heading>
-          </CardHeader>
+          <Heading size="md" my={"2"}>
+            Sample OGP Title Client Report
+          </Heading>
+
           <Heading size="xs" textTransform="uppercase">
             OGP data ref
           </Heading>
@@ -60,12 +58,20 @@ export const ShopDetailCard: React.FC<DAODataType> = ({
             Sample OGP Description that summarizes the content of the website.
           </Text>
         </CardBody>
-        <CardFooter justify="space-between" flexWrap="wrap">
-          <Button colorScheme="brand" as="a" href={storeUrl} size={"lg"}>
-            <FiExternalLink /> Go to Store
-          </Button>
-        </CardFooter>
       </VStack>
     </Flex>
+    <CardFooter
+      justify="space-between"
+      flexWrap="wrap"
+      sx={{
+        "& > button": {
+          minW: "136px",
+        },
+      }}
+    >
+      <Button colorScheme="brand" as="a" href={storeUrl} size={"lg"} w="full">
+        <FiExternalLink /> Go to Store
+      </Button>
+    </CardFooter>
   </Card>
 );
