@@ -66,7 +66,7 @@ export const DAOCard: React.FC<DAOCardProps & { og: OgObject }> = ({
             <Image
               boxSize={{ base: "80px", sm: "100px" }}
               objectFit="cover"
-              src={og.ogImage?.[0].url ?? 'https://htmlburger.com/blog/wp-content/uploads/2022/07/Shopify-Website-Examples.jpg'}
+              src={(typeof og.ogImage === 'string' ? og.ogImage : Array.isArray(og.ogImage) ? og.ogImage.at(0)?.url : og.ogImage?.url) ?? 'https://htmlburger.com/blog/wp-content/uploads/2022/07/Shopify-Website-Examples.jpg'}
               alt={og.ogTitle}
             />
             <VStack align="start">
