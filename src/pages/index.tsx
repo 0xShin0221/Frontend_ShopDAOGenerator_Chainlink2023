@@ -105,7 +105,6 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
       const res = await openGraphScraper({ url: daoData.storeUrl });
       if (res.error) console.log("openGraphScraper error", res.error);
 
-      console.log("og: ", res.result);
       return {
         ...daoData,
         og: res.result,

@@ -82,9 +82,9 @@ export const DAOData: DAODataType = {
 export const DAODataList: DAODataType[] = [
   {
     id: "0",
-    name: "DAO Name",
-    storeUrl: "https://google.com",
-    symbol: "DAO",
+    name: "Optimism",
+    storeUrl: "https://www.tally.xyz/gov/optimism",
+    symbol: "Optimism",
     stats: { proposals: 3, holders: 3, voters: 3 },
     proposals: [
       {
