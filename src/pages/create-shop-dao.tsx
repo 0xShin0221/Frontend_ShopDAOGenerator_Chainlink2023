@@ -1,13 +1,11 @@
 import Head from "next/head";
 
-import {
-  Container, Text, VStack,
-} from "@chakra-ui/react";
+import { Container, Text, VStack } from "@chakra-ui/react";
 import { DaoCreateStepper } from "../components";
 import { useAccount } from "wagmi";
 
 export default function CreateShopDao() {
-  const { isConnected, isDisconnected } = useAccount()
+  const { isConnected, isDisconnected } = useAccount();
 
   return (
     <>

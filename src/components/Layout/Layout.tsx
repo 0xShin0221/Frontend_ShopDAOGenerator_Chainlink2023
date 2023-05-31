@@ -1,25 +1,21 @@
-import {
-  ReactNode,
-  memo,
-} from "react";
-import {
-  VStack,
-} from "@chakra-ui/react";
+import { ReactNode, memo } from "react";
+import { Box, Container, VStack } from "@chakra-ui/react";
 
 import { _abiDaoFactory } from "../../../abi";
 import { Header } from "@/components";
+import { Footer } from "../Footer";
 
 type Props = {
-  children: ReactNode
-}
+  children: ReactNode;
+};
 
 export const Layout = memo(({ children }: Props): JSX.Element => {
-
   return (
-    <VStack p="1rem">
+    <>
       <Header />
       {children}
-    </VStack>
+      <Footer />
+    </>
   );
 });
 Layout.displayName = "Layout";
