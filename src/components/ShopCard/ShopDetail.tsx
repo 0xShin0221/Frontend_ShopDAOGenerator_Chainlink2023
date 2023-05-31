@@ -13,12 +13,14 @@ import {
   Card,
   CardHeader,
 } from "@chakra-ui/react";
+import { OgObject } from "open-graph-scraper/dist/lib/types";
 import { FiExternalLink } from "react-icons/fi";
 
 interface ShopDetailCardProps {
   storeUrl: string;
+  og: OgObject;
 }
-export const ShopDetailCard: React.FC<ShopDetailCardProps> = ({ storeUrl }) => (
+export const ShopDetailCard: React.FC<ShopDetailCardProps> = ({ storeUrl, og }) => (
   <Card
     width={{ base: "full", md: "auto" }}
     bg="bg-surface"
@@ -34,28 +36,28 @@ export const ShopDetailCard: React.FC<ShopDetailCardProps> = ({ storeUrl }) => (
         <Image
           objectFit="cover"
           maxW={{ base: "100%", sm: "600px" }}
-          src="https://htmlburger.com/blog/wp-content/uploads/2022/07/Shopify-Website-Examples.jpg"
-          alt="Shop OGP"
+          src={(typeof og.ogImage === 'string' ? og.ogImage : Array.isArray(og.ogImage) ? og.ogImage.at(0)?.url : og.ogImage?.url) ?? 'https://htmlburger.com/blog/wp-content/uploads/2022/07/Shopify-Website-Examples.jpg'}
+          alt={og.ogTitle}
         />
       </Box>
 
       <VStack align="start" spacing="3">
         <CardBody>
           <Heading size="md" my={"2"}>
-            Sample OGP Title Client Report
+            {og.ogTitle}
           </Heading>
 
           <Heading size="xs" textTransform="uppercase">
             OGP data ref
           </Heading>
           <Text py="2">
-            Sample OGP Description that summarizes the content of the website.
+            {og.ogDescription}
           </Text>
           <Heading size="xs" textTransform="uppercase">
             Overview
           </Heading>
           <Text py="2">
-            Sample OGP Description that summarizes the content of the website.
+            {og.ogDescription}
           </Text>
         </CardBody>
       </VStack>
