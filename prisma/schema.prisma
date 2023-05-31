@@ -18,3 +18,14 @@ model AccessTokenWalletAddress {
 
   @@unique([accessToken, walletAddress])
 }
+
+model SalesDistribution {
+  id                            String  @default(cuid()) @id
+  shopifyVariantId              String
+  productProfitRightNFTAddress  String
+
+  // Mumbai: 80001, Matic: 137
+  chainId                       String
+
+  @@unique([shopifyVariantId])
+}
