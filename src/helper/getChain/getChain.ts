@@ -1,8 +1,6 @@
 import { Mumbai, Polygon } from "@thirdweb-dev/chains";
+import { ChainId } from "@thirdweb-dev/sdk";
 
-export const getChain = () => {
-    console.log('NODE_ENV', process.env.NODE_ENV)
-    return process.env.NODE_ENV === "production"
-        ? Polygon // Matic
-        : Mumbai; // Mumbai
-}
+export const getChain = () => ChainId.Polygon === Number(process.env.NEXT_PUBLIC_CHAIN_ID)
+    ? Polygon // Matic
+    : Mumbai; // Mumbai
