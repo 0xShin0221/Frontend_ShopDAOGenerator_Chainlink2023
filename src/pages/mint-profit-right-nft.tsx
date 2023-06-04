@@ -48,7 +48,7 @@ const MintProfitRightNft = () => {
                   <Button onClick={mint} disabled={store.isClaiming}>
                     {store.isClaiming
                       ? 'claiming...'
-                      : `MINT (${store.claimPrice} ETH)`}
+                      : `MINT (${store.claimPrice} MATIC)`}
                   </Button>
                 ) : (
                   <Button onClick={connectWallet}>
