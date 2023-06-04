@@ -40,6 +40,7 @@ type Props = {
 }
 
 export const NftContractProvider: React.FC<Props> = ({ children }: Props) => {
+  console.log('NEXT_PUBLIC_CONTRACT_ADDRESS', process.env.NEXT_PUBLIC_CONTRACT_ADDRESS)
   const { data: nftDrop } = useContract(
     process.env.NEXT_PUBLIC_CONTRACT_ADDRESS,
     'nft-drop'
