@@ -11,6 +11,11 @@ In Vercel's official, `vercel env pull .env.local` should be executed, but in Pr
 
 3. Create the tables by `npx prisma db push`
 
+## Run the development server
+
+1. Pull enviroment variables: `vercel env pull .env`.
+3. Run the development server: `yarn dev`.
+
 # The following is the output produced by Next.js
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
