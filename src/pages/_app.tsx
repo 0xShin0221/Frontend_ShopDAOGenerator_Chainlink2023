@@ -16,6 +16,9 @@ import {
 import { publicProvider } from "wagmi/providers/public";
 import { useEffect } from "react";
 import { Layout } from "@/components";
+import { NftContractProvider } from "@/contexts";
+import { ThirdwebProvider } from "@thirdweb-dev/react";
+import { getChain } from "@/helper";
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [
@@ -107,6 +110,8 @@ const colors = {
 
 export const theme = extendTheme({ colors });
 
+const chain = getChain()
+
 export default function App({ Component, pageProps }: AppProps) {
   // https://github.com/wagmi-dev/wagmi/issues/542#issuecomment-1479062192
   useEffect(() => {
@@ -117,9 +122,13 @@ export default function App({ Component, pageProps }: AppProps) {
     <ChakraProvider theme={theme}>
       <WagmiConfig config={wagmiConfig}>
         <RainbowKitProvider chains={chains}>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
+          <ThirdwebProvider activeChain={chain}>
+            <NftContractProvider>
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+            </NftContractProvider>
+          </ThirdwebProvider>
         </RainbowKitProvider>
       </WagmiConfig>
     </ChakraProvider>

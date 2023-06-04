@@ -3,6 +3,7 @@ import { Product } from "@shopify/shopify-api/rest/admin/2023-04/product";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 import { prisma } from "../../../../lib/prisma";
+import { getChain } from "@/helper";
 
 export default async function handler(
   req: NextApiRequest & {
@@ -107,15 +108,12 @@ export default async function handler(
     console.log("Inventory item response ok");
     console.log(`Inventory item: ${JSON.stringify(inventoryItemData)}`);
 
-    const chainId =
-      process.env.NODE_ENV === "production"
-        ? '137' // Matic
-        : '80001'; // Mumbai
+    const chain = getChain()
     const salesDistributionData = await prisma.salesDistribution.create({
       data: {
         shopifyVariantId: firstProductVariant.id.toString(),
         productProfitRightNFTAddress: req.body.productProfitRightNFTAddress,
-        chainId,
+        chainId: chain.chainId.toString(),
       },
     });
     console.log(`Created salesDistributionData: ${JSON.stringify(salesDistributionData, null, 2)}`);
