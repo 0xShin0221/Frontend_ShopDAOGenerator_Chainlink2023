@@ -5,10 +5,9 @@ import React from 'react'
 type Props = {
   alt?: string
   imageUri?: string
-  name?: string
 }
 
-export const NftImage: React.FC<Props> = ({ alt, imageUri, name }) => {
+export const NftImage: React.FC<Props> = ({ alt, imageUri }) => {
   return imageUri ? (
     <AspectRatio
       maxW="400px"

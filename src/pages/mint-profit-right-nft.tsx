@@ -1,18 +1,19 @@
 import Head from 'next/head'
 import { NftContractContext } from '@/contexts/NftContractProvider/NftContractProvider'
-import { useConnectWallet } from '@/hooks/thirdweb/useConnectWallet/useConnectWallet'
 import { useMint } from '@/hooks/thirdweb/useMint/useMint'
 import { Flex, VStack, Button, Box, Text } from '@chakra-ui/react'
 import { useAddress } from '@thirdweb-dev/react'
 import { useContext } from 'react'
 import { getChain } from '@/helper'
 import { Fade, NftImagesSlideShow } from '@/components'
+import { useConnectWallet } from '@/hooks/thirdweb'
 
 const chain = getChain()
 
 const MintProfitRightNft = () => {
   const store = useContext(NftContractContext)
   const address = useAddress()
+  const { connectWallet } = useConnectWallet()
 
   const { mint } = useMint()
 
@@ -42,13 +43,17 @@ const MintProfitRightNft = () => {
             </Box>
 
             <div>
-              {address !== undefined && (
-                <Button onClick={mint} disabled={store.isClaiming}>
-                  {store.isClaiming
-                    ? 'claiming...'
-                    : `MINT (${store.claimPrice} ETH)`}
-                </Button>
-              )}
+            {address ? (
+              <Button onClick={mint} disabled={store.isClaiming}>
+                {store.isClaiming
+                  ? 'claiming...'
+                  : `MINT (${store.claimPrice} ETH)`}
+              </Button>
+            ) : (
+              <Button onClick={connectWallet}>
+                <Text fontSize="xs">Connect Wallet</Text>
+              </Button>
+            )}
               <Text pt={2} fontSize="xs" textAlign={'center'}>
                 {store.claimedSupply} / {store.totalSupply}
               </Text>

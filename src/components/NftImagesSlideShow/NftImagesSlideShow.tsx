@@ -36,7 +36,6 @@ export const NftImagesSlideShow: React.FC = () => {
       >
         <NftImage
           imageUri={token.metadata.image}
-          name={token.metadata.name}
         />
       </motion.div>
     </AnimatePresence>
