@@ -12,7 +12,7 @@ const chain = getChain()
 
 export const useMint = () => {
   const { data: nftDrop } = useContract(
-    process.env.NEXT_PUBLIC_CONTRACT_ADDRESS,
+    '0x695500d3CA84F7a981FAE4f25c0D9c57781FCB4d',
     'nft-drop'
   )
   const store = useContext(NftContractContext)
