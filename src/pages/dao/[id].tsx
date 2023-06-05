@@ -1,43 +1,10 @@
-import {
-  Avatar,
-  Box,
-  Button,
-  VStack,
-  HStack,
-  Text,
-  Link,
-  Icon,
-  Stack,
-  Container,
-  SimpleGrid,
-  Heading,
-  Badge,
-  Stat,
-  Alert,
-  AlertIcon,
-  CardHeader,
-  CardBody,
-  StackDivider,
-  Card,
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionIcon,
-  AccordionPanel,
-  Image,
-  Divider,
-  Flex,
-  useBreakpointValue,
-} from "@chakra-ui/react";
-import { FiExternalLink, FiFileText, FiSettings } from "react-icons/fi";
-import router, { useRouter } from "next/router";
+import { Box } from "@chakra-ui/react";
+
+import { useRouter } from "next/router";
 import openGraphScraper from "open-graph-scraper";
 import { OgObject } from "open-graph-scraper/dist/lib/types";
 
 import { DAOData, DAODataList } from "../../mocks/DAOs";
-
-import type { ProposalType } from "../../types/Proposals";
-
 import { ShopDetailCard } from "@/components/ShopCard";
 import { DAODetailInfo } from "@/components/DAOCard/DAODetailInfo";
 
@@ -53,8 +20,7 @@ export default function Dao(daoData: DAODataType & { og: OgObject }) {
     return null;
   }
 
-  const { name, storeUrl, symbol, stats, proposals, contractParameters, og } =
-    daoData;
+  const { storeUrl, proposals, og } = daoData;
 
   return (
     <Box
@@ -75,17 +41,19 @@ export default function Dao(daoData: DAODataType & { og: OgObject }) {
   );
 }
 
-export const getStaticProps: GetStaticProps<DAODataType & { og: OgObject }> = async (context) => {
-  console.log("context.params", context.params)
-  const daoData = DAODataList[Number(context.params?.id)]
+export const getStaticProps: GetStaticProps<
+  DAODataType & { og: OgObject }
+> = async (context) => {
+  console.log("context.params", context.params);
+  const daoData = DAODataList[Number(context.params?.id)];
   const res = await openGraphScraper({ url: daoData.storeUrl });
   if (res.error) console.log("openGraphScraper error", res.error);
   return {
     props: {
       ...daoData,
       og: res.result,
-    }
-  }
+    },
+  };
 };
 
 export const getStaticPaths: GetStaticPaths = () => {
@@ -94,4 +62,4 @@ export const getStaticPaths: GetStaticPaths = () => {
     paths,
     fallback: true,
   };
-}
+};
