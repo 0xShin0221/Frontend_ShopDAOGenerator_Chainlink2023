@@ -42,6 +42,7 @@ export const ProposalList: React.FC<{ proposals: ProposalType[] }> = ({
           {proposals.length > 0 ? (
             proposals.map((proposal) => (
               <Link
+                href={`/proposal/${proposal.id}`}
                 key={proposal.id}
                 _hover={{ textDecor: "none" }}
                 role="group"
