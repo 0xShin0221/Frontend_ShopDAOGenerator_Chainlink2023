@@ -1,11 +1,11 @@
 import { Text, Stack, useBreakpointValue } from "@chakra-ui/react";
 import { useStep } from "./useStep";
-import { steps } from "./data";
+import { stepContents } from "./StepContents";
 import { Step } from "./Step";
 
 export const ProposalCreateStepper = () => {
   const [currentStep, { setStep }] = useStep({
-    maxStep: steps.length,
+    maxStep: stepContents.length,
     initialStep: 0,
   });
 
@@ -16,7 +16,7 @@ export const ProposalCreateStepper = () => {
       <Text>ProposalCreateStepper</Text>
 
       <Stack spacing="0" direction={{ base: "column", md: "row" }} width="full">
-        {steps.map((step, id) => (
+        {stepContents.map((step, id) => (
           <Step
             key={id}
             cursor="pointer"
@@ -26,7 +26,7 @@ export const ProposalCreateStepper = () => {
             isActive={currentStep === id}
             isCompleted={currentStep > id}
             isFirstStep={id === 0}
-            isLastStep={steps.length === id + 1}
+            isLastStep={stepContents.length === id + 1}
             currentStep={currentStep}
           />
         ))}
@@ -34,7 +34,7 @@ export const ProposalCreateStepper = () => {
 
       {!isMobile && (
         <Stack spacing="0" direction="row" width="full">
-          {steps[currentStep].children}
+          {stepContents[currentStep].children}
         </Stack>
       )}
     </>

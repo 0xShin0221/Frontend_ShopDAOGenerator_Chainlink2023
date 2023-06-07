@@ -7,7 +7,7 @@ import {
   useBreakpointValue,
 } from "@chakra-ui/react";
 import { StepCircle } from "./StepCircle";
-import { steps } from "./data";
+import { stepContents } from "./StepContents";
 
 interface StepProps extends BoxProps {
   title: string;
@@ -38,7 +38,7 @@ export const Step = (props: StepProps) => {
     md: "horizontal",
   });
 
-  const currentContent = steps[currentStep].children;
+  const currentContent = stepContents[currentStep].children;
   return (
     <>
       <Stack
@@ -88,7 +88,7 @@ export const Step = (props: StepProps) => {
               direction={{ base: "column", md: "row" }}
               width={"full"}
             >
-              {steps[currentStep].children}
+              {stepContents[currentStep].children}
             </Stack>
           )}
         </Stack>
