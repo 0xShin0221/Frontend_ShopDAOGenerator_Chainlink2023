@@ -82,7 +82,15 @@ export const Step = (props: StepProps) => {
             {title}
           </Text>
           <Text color="fg.muted">{description}</Text>
-          {isActive && <Box width="full"> currentContent</Box>}
+          {isActive && isMobile && (
+            <Stack
+              spacing="0"
+              direction={{ base: "column", md: "row" }}
+              width={"full"}
+            >
+              {steps[currentStep].children}
+            </Stack>
+          )}
         </Stack>
       </Stack>
     </>
