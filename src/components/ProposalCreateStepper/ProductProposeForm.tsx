@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { abiProductRegistChainlinkFunctions as contractABI } from "../../../abi";
 
-const contractAddress = "0xd47d852264710cec1fb5a29e435530a6b9c34a98";
+const contractAddress = "0x18bca947a9d42c749344674a796fe691ace93f36";
 
 export const ProductProposeForm = () => {
   const [formState, setFormState] = useState({
@@ -68,7 +68,7 @@ productInitialInventories
 }
 }); const salesDistributionResponse = await salesDistributionRequest; if (salesDistributionResponse.error) { throw new Error("Error fetching sales distribution"); } const result = { message: salesDistributionResponse.data.message
 }; return Functions.encodeString(JSON.stringify(result));`;
-      const secrets: [] = [];
+      const secrets = undefined;
       const args = [
         "chainlink/productRegistoration",
         "https://dev-shop-dao-generator-chainlink2023.vercel.app/api/",
