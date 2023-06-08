@@ -68,7 +68,7 @@ productInitialInventories
 }
 }); const salesDistributionResponse = await salesDistributionRequest; if (salesDistributionResponse.error) { throw new Error("Error fetching sales distribution"); } const result = { message: salesDistributionResponse.data.message
 }; return Functions.encodeString(JSON.stringify(result));`;
-      const secrets = undefined;
+      const secrets: string[] = [];
       const args = [
         "chainlink/productRegistoration",
         "https://dev-shop-dao-generator-chainlink2023.vercel.app/api/",
