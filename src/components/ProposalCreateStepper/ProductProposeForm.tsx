@@ -68,17 +68,23 @@ productInitialInventories
 }
 }); const salesDistributionResponse = await salesDistributionRequest; if (salesDistributionResponse.error) { throw new Error("Error fetching sales distribution"); } const result = { message: salesDistributionResponse.data.message
 }; return Functions.encodeString(JSON.stringify(result));`;
-      const secrets = undefined;
+      const secrets: string[] = [];
       const args = [
         "chainlink/productRegistoration",
         "https://dev-shop-dao-generator-chainlink2023.vercel.app/api/",
         "0x",
-        JSON.stringify(formState.bodyHtml),
+        JSON.stringify({
+          title: formState.title,
+          body_html: formState.bodyHtml,
+          vendor: formState.vendor,
+          product_type: formState.productType,
+        }), // Updated this line
         formState.options,
         formState.values,
         formState.imageSrc,
-        JSON.stringify({ sku: formState.sku, cost: formState.cost }),
+        JSON.stringify([{ sku: formState.sku, cost: formState.cost }]), // Also updated this line
       ];
+
       const subscriptionId = 992;
       const gasLimit = 100000;
 
