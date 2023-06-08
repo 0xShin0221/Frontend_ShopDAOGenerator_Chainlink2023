@@ -15,6 +15,8 @@ import { Dropzone } from "../Dropzone";
 import { FiBox, FiDatabase } from "react-icons/fi";
 
 import { RadioCard, RadioCardGroup } from "../RadioCard";
+import { ProductProposeForm } from "./ProductProposeForm";
+import { GeneralProposeForm } from "./GeneralProposeForm";
 
 const radioCardData = [
   {
@@ -33,7 +35,9 @@ const radioCardData = [
 export const ProposalCrateEditor = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-
+  const [selectedProposalTypeOption, setSelectedProposalTypeOption] = useState(
+    radioCardData[0].label
+  );
   const handleTitleChange = (e: {
     target: { value: SetStateAction<string> };
   }) => {
@@ -57,7 +61,10 @@ export const ProposalCrateEditor = () => {
       >
         Write your proposal
       </Heading>
-      <RadioCardGroup defaultValue="one">
+      <RadioCardGroup
+        defaultValue={radioCardData[0].label}
+        onChange={setSelectedProposalTypeOption}
+      >
         {radioCardData.map((option) => (
           <RadioCard
             key={option.label}
@@ -79,42 +86,12 @@ export const ProposalCrateEditor = () => {
           </RadioCard>
         ))}
       </RadioCardGroup>
-      <Text fontWeight={"semibold"} my="8px">
-        Title
-      </Text>
-      <Input
-        value={title}
-        onChange={handleTitleChange}
-        placeholder="Here is a sample placeholder"
-        size="sm"
-      />
-
-      <Text fontWeight={"semibold"} my="8px">
-        Description [todo:to rich editor like TinyMCE ]
-      </Text>
-      <Textarea
-        value={description}
-        onChange={handleDescriptionChange}
-        placeholder="Here is a sample placeholder"
-        size="sm"
-      />
-      <FormControl id="file" py={4}>
-        <FormLabel fontWeight={"semibold"}>Drop proposal image</FormLabel>
-        <Dropzone />
-      </FormControl>
-
-      <Stack
-        direction={{ base: "column", sm: "row" }}
-        justify={{ base: "end" }}
-      >
-        <ButtonGroup>
-          <Button m={"4"}>Back</Button>
-
-          <Button colorScheme="brandSubColor" m={"4"}>
-            Continue
-          </Button>
-        </ButtonGroup>
-      </Stack>
+      {selectedProposalTypeOption === "Product propose" && (
+        <ProductProposeForm />
+      )}
+      {selectedProposalTypeOption === "General propose" && (
+        <GeneralProposeForm />
+      )}
     </Box>
   );
 };

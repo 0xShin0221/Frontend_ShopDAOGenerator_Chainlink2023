@@ -14,7 +14,7 @@ export const StepCircle = (props: RadioCircleProps) => {
       bg={isCompleted ? "brand.900" : "inherit"}
       borderWidth={isCompleted ? "0" : "2px"}
       borderColor={isActive ? "brand.900" : "inherit"}
-      {...props}
+      // {...props}
     >
       {isCompleted ? (
         <Icon as={HiCheck} color="white" boxSize="5" />
