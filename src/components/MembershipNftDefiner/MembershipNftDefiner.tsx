@@ -108,7 +108,7 @@ export const MembershipNftDefiner = memo(
       confirmationNumberTransactionResponseList,
       setConfirmationNumberTransactionResponseList,
     ] = useState<ConfirmationNumberTransactionResponse[]>([]);
-
+    console.log("my address", address);
     const handleSubmit = useCallback(
       async (event: FormEvent<HTMLFormElement>): Promise<void> => {
         event.preventDefault();

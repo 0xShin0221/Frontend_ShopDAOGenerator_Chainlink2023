@@ -3,6 +3,7 @@ import { Product } from "@shopify/shopify-api/rest/admin/2023-04/product";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 import { prisma } from "../../../../lib/prisma";
+import { access } from "fs";
 
 export default async function handler(
   req: NextApiRequest & {
@@ -17,9 +18,13 @@ export default async function handler(
   },
   res: NextApiResponse
 ) {
+  const accessToken = process.env.SHOPIFY_ACCESS_TOKEN;
+  if (accessToken === undefined) {
+    throw new Error("process.env.SHOPIFY_ACCESS_TOKEN is undefined");
+  }
   const headers = {
     // Ex shpat_1234567890abcdef1234567890abcdef
-    "X-Shopify-Access-Token": req.body.accessToken,
+    "X-Shopify-Access-Token": accessToken,
     "Content-Type": "application/json",
   };
   try {
@@ -33,21 +38,20 @@ export default async function handler(
       return;
     }
 
-    console.log(`accessToken: ${req.body.accessToken}`);
     console.log(`storeUrl: ${req.body.storeUrl}`);
     // Ex https://your-development-store.myshopify.com/admin/api/2023-04/shop.json
     const productCreateUrl = `https://${req.body.storeUrl}.myshopify.com/admin/api/2023-04/products.json`;
     console.log(`Producr create url: ${productCreateUrl}`);
     const body = JSON.stringify({
       product: {
-        title: req.body.product.title,
+        title: "Burton Custom Freestyle 151",
         body_html: "<strong>Good snowboard!</strong>",
         vendor: "Burton",
         product_type: "Snowboard",
         variants: [
           {
             option1: "Blue",
-            price: req.body.price,
+            price: 2000,
             sku: "blue",
           },
         ],
