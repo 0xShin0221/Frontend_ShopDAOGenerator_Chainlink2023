@@ -109,8 +109,8 @@ export default async function handler(
 
     const chainId =
       process.env.NODE_ENV === "production"
-        ? '137' // Matic
-        : '80001'; // Mumbai
+        ? "137" // Matic
+        : "11155111"; // Sepolia
     const salesDistributionData = await prisma.salesDistribution.create({
       data: {
         shopifyVariantId: firstProductVariant.id.toString(),
@@ -118,7 +118,13 @@ export default async function handler(
         chainId,
       },
     });
-    console.log(`Created salesDistributionData: ${JSON.stringify(salesDistributionData, null, 2)}`);
+    console.log(
+      `Created salesDistributionData: ${JSON.stringify(
+        salesDistributionData,
+        null,
+        2
+      )}`
+    );
 
     res.status(200).json({
       productData,
