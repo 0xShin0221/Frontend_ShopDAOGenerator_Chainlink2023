@@ -38,7 +38,7 @@ import { _abiDaoFactory } from "../../../abi";
 import { DaoFactory } from "../../../typechain-types";
 import { IDaoFactory } from "../../../typechain-types/src/DAOFactory/DaoFactory";
 import { CreateParamsForm } from "@/components";
-import { Network, getDeployedContracts } from "@/deployedContracts";
+import { chain, getDeployedContracts } from "@/Constants";
 
 type ConfirmationNumberTransactionResponse = {
   confirmationNumber: number;
@@ -57,11 +57,7 @@ async function callCreateFunction(
   setTransactionHash(undefined);
   setConfirmationNumberTransactionResponseList([]);
   const web3 = new Web3((window as any).ethereum);
-  // TODO: to the another place
-  const chain = process.env.NEXT_PUBLIC_CHAIN_NAME as Network;
-  if (chain === undefined) {
-    throw new Error("process.env.NEXT_PUBLIC_CHAIN_NAME is undefined");
-  }
+
   const contract = new web3.eth.Contract(
     _abiDaoFactory,
     getDeployedContracts(chain).DaoFactory
@@ -112,7 +108,7 @@ export const MembershipNftDefiner = memo(
       confirmationNumberTransactionResponseList,
       setConfirmationNumberTransactionResponseList,
     ] = useState<ConfirmationNumberTransactionResponse[]>([]);
-
+    console.log("my address", address);
     const handleSubmit = useCallback(
       async (event: FormEvent<HTMLFormElement>): Promise<void> => {
         event.preventDefault();

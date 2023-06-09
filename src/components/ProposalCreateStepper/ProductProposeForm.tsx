@@ -9,8 +9,13 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 import { abiProductRegistChainlinkFunctions as contractABI } from "../../../abi";
+import {
+  chain,
+  getChainlinkSubscriptionId,
+  getDeployedContracts,
+} from "@/Constants";
 
-const contractAddress = "0x18bca947a9d42c749344674a796fe691ace93f36";
+const contractAddress = getDeployedContracts(chain).FunctionsClient;
 
 export const ProductProposeForm = () => {
   const [formState, setFormState] = useState({
@@ -85,7 +90,7 @@ productInitialInventories
         JSON.stringify([{ sku: formState.sku, cost: formState.cost }]),
       ];
 
-      const subscriptionId = 992;
+      const subscriptionId = getChainlinkSubscriptionId(chain);
       const gasLimit = 100000;
 
       const tx = await contract.executeRequest(
