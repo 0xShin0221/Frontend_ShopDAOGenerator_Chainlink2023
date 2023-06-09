@@ -12,6 +12,7 @@ import {
   Button,
   Divider,
 } from "@chakra-ui/react";
+import router from "next/router";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 
 export const Footer = () => (
@@ -83,7 +84,7 @@ export const Footer = () => (
             </Stack>
           </Stack> */}
         <Stack spacing="4">
-          <Text fontSize="sm" fontWeight="semibold" color="on-accent-subtle">
+          <Text fontSize="sm" fontWeight="semibold" color="gray.500">
             Stay up to date
           </Text>
           <Stack
@@ -91,19 +92,23 @@ export const Footer = () => (
             direction={{ base: "column", sm: "row" }}
             maxW={{ lg: "360px" }}
           >
-            <Input
+            {/* <Input
               placeholder="Enter your email"
               type="email"
               required
               variant="outline-on-accent"
-            />
+            /> */}
             <Button
               variant="primary-on-accent"
               type="submit"
               flexShrink={0}
+              textColor={"white"}
+              onClick={() => {
+                router.push("https://rj37ob59e54.typeform.com/to/gFqXvteu");
+              }}
               bgColor={"brand.900"}
             >
-              Subscribe
+              Keep in touch with us!
             </Button>
           </Stack>
         </Stack>
@@ -133,6 +138,11 @@ export const Footer = () => (
           href="#"
           aria-label="GitHub"
           icon={<FaGithub fontSize="1.25rem" />}
+          onClick={() => {
+            router.push(
+              "https://github.com/0xShin0221/Frontend_ShopDAOGenerator_Chainlink2023"
+            );
+          }}
         />
         <IconButton
           as="a"
