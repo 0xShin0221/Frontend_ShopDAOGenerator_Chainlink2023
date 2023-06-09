@@ -7,7 +7,7 @@ import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
 import {
   polygonMumbai,
-  goerli,
+  sepolia,
   mainnet,
   polygon,
   optimism,
@@ -24,14 +24,14 @@ const { chains, publicClient, webSocketPublicClient } = configureChains(
     optimism,
     arbitrum,
     ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === "true"
-      ? [goerli, polygonMumbai]
+      ? [polygonMumbai, sepolia]
       : []),
   ],
   [publicProvider()]
 );
 
 const { connectors } = getDefaultWallets({
-  appName: "My RainbowKit App",
+  appName: "ShopDAO Generator",
   projectId: "YOUR_PROJECT_ID",
   chains,
 });

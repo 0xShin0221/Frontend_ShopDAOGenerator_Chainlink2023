@@ -24,7 +24,7 @@ model SalesDistribution {
   shopifyVariantId              String
   productProfitRightNFTAddress  String
 
-  // Mumbai: 80001, Matic: 137
+  // Mumbai: 80001, Matic: 137, Sepolia: 11155111
   chainId                       String
 
   @@unique([shopifyVariantId])
