@@ -4,6 +4,7 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 import { _abiDaoFactory } from "../../../abi";
 import Link from "next/link";
+import { Banner } from "./Banner";
 
 export const Header = memo((): JSX.Element => {
   const logoStyles = {
@@ -45,6 +46,7 @@ export const Header = memo((): JSX.Element => {
         </Link>
         <ConnectButton aria-label="Connect to Wallet" />
       </Flex>
+      <Banner />
     </>
   );
 });

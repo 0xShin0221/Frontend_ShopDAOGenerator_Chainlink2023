@@ -1,22 +1,20 @@
 import {
   Box,
   Button,
-  Circle,
   Heading,
   Img,
   LightMode,
-  SimpleGrid,
   Stack,
   Text,
   useColorModeValue as mode,
-  VisuallyHidden,
+  useBreakpointValue,
 } from "@chakra-ui/react";
-import { FaPlay } from "react-icons/fa";
-import * as Logos from "./FirstViewBrands";
+
 import { memo } from "react";
 import router from "next/router";
 
 export const FirstView = memo((): JSX.Element => {
+  const isMobile = useBreakpointValue({ base: true, md: false });
   return (
     <Box>
       <Box as="section" bg="brand.800" color="white" py="7.5rem">
@@ -62,10 +60,10 @@ export const FirstView = memo((): JSX.Element => {
                 fontWeight="bold"
                 fontSize="md"
                 onClick={() => {
-                  router.push("/create-shop-dao");
+                  router.push("https://rj37ob59e54.typeform.com/to/gFqXvteu");
                 }}
               >
-                Get started free
+                Join waitlist
               </Button>
               <Button
                 as="a"
@@ -75,6 +73,9 @@ export const FirstView = memo((): JSX.Element => {
                 px="8"
                 fontWeight="bold"
                 fontSize="md"
+                onClick={() => {
+                  router.push("https://rj37ob59e54.typeform.com/to/Wr6hak0f");
+                }}
               >
                 Request demo
               </Button>
@@ -84,9 +85,9 @@ export const FirstView = memo((): JSX.Element => {
           <Img
             borderRadius={"2xl"}
             alt="System architect for users"
-            src="img/V3.png"
+            src={isMobile ? "gif/mobile-workflow.gif" : "gif/pc-workflow.gif"}
             mx="auto"
-            width={{ base: "90%", md: "90%" }}
+            width={{ base: "100%", md: "100%" }}
             height={{ base: "50%", md: "90%" }}
             objectFit="contain"
           />

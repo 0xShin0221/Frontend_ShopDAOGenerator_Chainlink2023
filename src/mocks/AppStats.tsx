@@ -1,8 +1,8 @@
 export const AppStatsData = [
   {
-    label: "Gross Distribution",
+    label: "TVL",
     value: "$" + "1,88720",
-    delta: { value: "0.1%", isUpwardsTrend: false },
+    delta: { value: "0.3%", isUpwardsTrend: true },
     link: "/about/gross-distribution",
   },
   {
