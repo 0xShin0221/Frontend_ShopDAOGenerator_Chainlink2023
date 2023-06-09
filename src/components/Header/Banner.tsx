@@ -16,12 +16,6 @@ export const Banner = () => {
   return (
     <Box as="section">
       <Box bg="blackAlpha.100" boxShadow="sm">
-        <CloseButton
-          display={{ sm: "none" }}
-          position="absolute"
-          right="2"
-          top="2"
-        />
         <Stack
           direction={{ base: "column", sm: "row" }}
           justify="center"
