@@ -14,20 +14,45 @@ export default async function handler(
       product: Product;
       price: number;
       cost: number;
+      walletAddress: string
     };
   },
   res: NextApiResponse
 ) {
-  const accessToken = process.env.SHOPIFY_ACCESS_TOKEN;
-  if (accessToken === undefined) {
-    throw new Error("process.env.SHOPIFY_ACCESS_TOKEN is undefined");
+  if (!req.body.walletAddress) {
+    res.statusCode = 400
+    res.end('Wallet Address Not Found')
+    return; 
   }
-  const headers = {
-    // Ex shpat_1234567890abcdef1234567890abcdef
-    "X-Shopify-Access-Token": accessToken,
-    "Content-Type": "application/json",
-  };
+
   try {
+    const accessTokenWalletAddress =
+      await prisma.accessTokenWalletAddress.findFirst({
+        where: {
+          walletAddress: req.body.walletAddress,
+        },
+      });
+      if (!accessTokenWalletAddress) {
+        console.log("AccessTokenWalletAddress Not Found")
+        res.statusCode = 404
+        res.end('AccessTokenWalletAddress Not Found')
+        return
+      }
+
+    console.log("Successfully fetch AccessTokenWalletAddress")
+    if (!accessTokenWalletAddress?.accessToken) {
+      console.log("Successfully fetch AccessTokenWalletAddress, but access token not found")
+      res.statusCode = 404
+      res.end('Successfully fetch AccessTokenWalletAddress, but access token not found')
+      return
+    }
+
+    const headers = {
+      // Ex shpat_1234567890abcdef1234567890abcdef
+      "X-Shopify-Access-Token": accessTokenWalletAddress.accessToken,
+      "Content-Type": "application/json",
+    };
+
     console.log(`Chainlink: Product Registration API`);
     console.log(`method: ${req.method}`);
     console.log("body: ", req.body);
