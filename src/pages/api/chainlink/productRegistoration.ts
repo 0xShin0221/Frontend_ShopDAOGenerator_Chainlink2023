@@ -4,22 +4,25 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 import { prisma } from "../../../../lib/prisma";
 import { access } from "fs";
+import { ProductRegistrationReqBody } from "@/types/ShopifyAPITypes";
 
 export default async function handler(
-  req: NextApiRequest & {
-    body: {
-      accessToken: string;
-      storeUrl: string;
-      productProfitRightNFTAddress: string;
-      product: Product;
-      price: number;
-      cost: number;
-      walletAddress: string
-    };
-  },
+  req: NextApiRequest & { body: ProductRegistrationReqBody },
   res: NextApiResponse
 ) {
-  if (!req.body.walletAddress) {
+  console.log(`Chainlink: Product Registration API`);
+  console.log(`method: ${req.method}`);
+  console.log("body: ", req.body);
+  if (req.method !== "POST") {
+    res.statusCode = 405;
+    res.setHeader("Allow", "POST");
+    res.end("Method Not Allowed");
+    return;
+  }
+
+  // TODO: add productRegistrationReqBody validation
+  const productRegistrationReqBody = req.body as ProductRegistrationReqBody
+  if (!productRegistrationReqBody.walletAddress) {
     res.statusCode = 400
     res.end('Wallet Address Not Found')
     return; 
@@ -29,7 +32,7 @@ export default async function handler(
     const accessTokenWalletAddress =
       await prisma.accessTokenWalletAddress.findFirst({
         where: {
-          walletAddress: req.body.walletAddress,
+          walletAddress: productRegistrationReqBody.walletAddress,
         },
       });
       if (!accessTokenWalletAddress) {
@@ -53,33 +56,18 @@ export default async function handler(
       "Content-Type": "application/json",
     };
 
-    console.log(`Chainlink: Product Registration API`);
-    console.log(`method: ${req.method}`);
-    console.log("body: ", req.body);
-    if (req.method !== "POST") {
-      res.statusCode = 405;
-      res.setHeader("Allow", "POST");
-      res.end("Method Not Allowed");
-      return;
-    }
-
-    console.log(`storeUrl: ${req.body.storeUrl}`);
+    console.log(`storeUrl: ${productRegistrationReqBody.storeUrl}`);
     // Ex https://your-development-store.myshopify.com/admin/api/2023-04/shop.json
-    const productCreateUrl = `https://${req.body.storeUrl}.myshopify.com/admin/api/2023-04/products.json`;
-    console.log(`Producr create url: ${productCreateUrl}`);
-    const body = JSON.stringify({
+    const productCreateUrl = `https://${productRegistrationReqBody.storeUrl}.myshopify.com/admin/api/2023-04/products.json`;
+    console.log(`Product create url: ${productCreateUrl}`);
+    console.log('productVariantsJsonString:', productRegistrationReqBody.productVariantsJsonString);
+    console.log('productVariantsJsonString:', productRegistrationReqBody.productVariantsJsonString);
+    const postProductsBody = JSON.stringify({
       product: {
-        title: "Burton Custom Freestyle 151",
-        body_html: "<strong>Good snowboard!</strong>",
-        vendor: "Burton",
-        product_type: "Snowboard",
-        variants: [
-          {
-            option1: "Blue",
-            price: 2000,
-            sku: "blue",
-          },
-        ],
+        ...productRegistrationReqBody.productVariantsJsonString,
+        variants: productRegistrationReqBody.productVariantsJsonString,
+        options: productRegistrationReqBody.productOptionsJsonString,
+        images: productRegistrationReqBody.productImagesJsonString,
       },
     });
 
@@ -87,7 +75,7 @@ export default async function handler(
     const response = await fetch(productCreateUrl, {
       method: "POST",
       headers,
-      body,
+      body: postProductsBody,
     });
     if (!response.ok) {
       console.log("Response not ok");
@@ -104,6 +92,8 @@ export default async function handler(
     const firstProductVariant = productData.product.variants[0];
     const inventoryItemId = firstProductVariant.inventory_item_id;
     console.log(`inventoryItemId: ${inventoryItemId}`);
+
+    // TODO: fix to handle multiple inventories for  productInitialInventories by commit: https://github.com/0xShin0221/Protocol_ShopDAOGenerator_Chainlink2023/commit/b9662aa4c98a4bcb04a8237ba5c2a30f04c4d04f
 
     // Put Inventory Item
     // https://shopify.dev/docs/api/admin-rest/2023-04/resources/inventoryitem#put-inventory-items-inventory-item-id

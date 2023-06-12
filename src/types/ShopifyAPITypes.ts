@@ -17,4 +17,6 @@ export interface ProductRegistrationReqBody {
     | null;
   productImagesJsonString: ShopifyImage[];
   productInitialInventories: ShopifyInventoryItem[];
+  walletAddress: string
+  storeUrl: string
 }
