@@ -60,11 +60,11 @@ export default async function handler(
     // Ex https://your-development-store.myshopify.com/admin/api/2023-04/shop.json
     const productCreateUrl = `https://${productRegistrationReqBody.storeUrl}.myshopify.com/admin/api/2023-04/products.json`;
     console.log(`Product create url: ${productCreateUrl}`);
-    console.log('productVariantsJsonString:', productRegistrationReqBody.productVariantsJsonString);
+    console.log('productJsonString:', productRegistrationReqBody.productJsonString);
     console.log('productVariantsJsonString:', productRegistrationReqBody.productVariantsJsonString);
     const postProductsBody = JSON.stringify({
       product: {
-        ...productRegistrationReqBody.productVariantsJsonString,
+        ...productRegistrationReqBody.productJsonString,
         variants: productRegistrationReqBody.productVariantsJsonString,
         options: productRegistrationReqBody.productOptionsJsonString,
         images: productRegistrationReqBody.productImagesJsonString,
